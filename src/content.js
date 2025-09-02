@@ -336,7 +336,7 @@ I could guess a letter only once. After I guessed a letter, my programming disab
     {
       key: "black-umbrellas",
       name: "Black Umbrellas",
-      url: "https://blackumbrellas.org/",
+      url: "https://blackumbrellas.co.za/",
       img: "/assets/black-umbrellas.jpg",                 // card thumbnail
       snippet: "Accepted into the Black Umbrellas Enterprise Supplier Development Programme.",
       snippetImg: "/assets/bu-letter-snippet.jpg",        // cropped screenshot ONLY
