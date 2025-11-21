@@ -1,0 +1,74 @@
+[
+  {
+    "name": "01 — Personal Profile Page",
+    "outcome": "Customized web page showcasing personal profile with graphics and stylish design",
+    "stack": ["HTML", "CSS", "GitHub"],
+    "thumb": "/assets/p1-thumb.jpg",
+    "url": "https://ndumiso-y.github.io/Project-1--Personal-Profile-Page/",
+    "audio": "/assets/p1.mp3",
+    "audioDesc": "What this project is about"
+  },
+  {
+    "name": "02 — Mobile-first Layout",
+    "outcome": "Responsive layout adjusting to small, medium, and large screen sizes",
+    "stack": ["HTML", "CSS", "Media Queries"],
+    "thumb": "/assets/p2-thumb.jpg",
+    "url": "https://ndumiso-y.github.io/Project2--MobileFirstResponsiveLayout/",
+    "audio": "/assets/p2.mp3",
+    "audioDesc": "Mobile-first responsive layout"
+  },
+  {
+    "name": "03 — Interactive Registration Form",
+    "outcome": "Mobile-friendly registration form with diverse input types",
+    "stack": ["HTML", "CSS", "Forms"],
+    "thumb": "/assets/p3-thumb.jpg",
+    "url": "https://ndumiso-y.github.io/Project-3/",
+    "audio": "/assets/p3.mp3",
+    "audioDesc": "Responsive form & inputs"
+  },
+  {
+    "name": "04 — Web Style Guide (Sass)",
+    "outcome": "Sass micro-framework for rapid prototyping",
+    "stack": ["Sass", "CSS", "Variables"],
+    "thumb": "/assets/p4-thumb.jpg",
+    "url": "https://ndumiso-y.github.io/Project4---Web/",
+    "audio": "/assets/p4.mp3",
+    "audioDesc": "Sass variables & partials"
+  },
+  {
+    "name": "05 — Photo Gallery",
+    "outcome": "Interactive gallery with search and lightbox",
+    "stack": ["JavaScript", "CSS Grid", "DOM"],
+    "thumb": "/assets/p5-thumb.jpg",
+    "url": "https://ndumiso-y.github.io/Project5--photogallery/",
+    "audio": "/assets/p5.mp3",
+    "audioDesc": "JS lightbox & search"
+  },
+  {
+    "name": "06 — Game Show App",
+    "outcome": "Word guessing game with onscreen keyboard",
+    "stack": ["JavaScript", "Arrays", "Events"],
+    "thumb": "/assets/p6-thumb.jpg",
+    "url": "https://ndumiso-y.github.io/Project6--GameShowApp/",
+    "audio": "/assets/p6.mp3",
+    "audioDesc": "Word guessing game"
+  },
+  {
+    "name": "07 — Web App Dashboard",
+    "outcome": "Dashboard with JavaScript-driven charts and graphs",
+    "stack": ["JavaScript", "Chart.js", "UI"],
+    "thumb": "/assets/p7-thumb.jpg",
+    "url": "https://ndumiso-y.github.io/https---github.com-Ndumiso-Y-Project7--WebAppDashBoard/",
+    "audio": "/assets/p7.mp3",
+    "audioDesc": "Charts & forms"
+  },
+  {
+    "name": "08 — API Employee Directory",
+    "outcome": "Employee directory with API fetch and modal details",
+    "stack": ["JavaScript", "Fetch API", "JSON"],
+    "thumb": "/assets/p8-thumb.jpg",
+    "url": "https://ndumiso-y.github.io/Project-8--API--Employee---Directory/",
+    "audio": "/assets/p8.mp3",
+    "audioDesc": "Fetch API & modals"
+  }
+]

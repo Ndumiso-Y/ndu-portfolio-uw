@@ -50,29 +50,23 @@ function SafeLogo({ src, alt = "", className = "", fallbackType = "badge" }) {
 }
 
 function ActionButton({ href, onClick, children, variant = "solid", ariaLabel, isPrimary = false }) {
-  const brand = content?.brandColor || "#48aab7";
-  const base = "inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-medium transition-all duration-200 transform hover:scale-105 active:scale-95";
-  const solid = isPrimary 
-    ? `text-white shadow-lg hover:shadow-xl` 
-    : "bg-slate-900 text-white hover:bg-slate-800 shadow-md hover:shadow-lg";
-  const outline = "border-2 border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 shadow-sm hover:shadow-md";
-  
-  const primaryStyle = isPrimary ? { 
-    background: `linear-gradient(135deg, ${brand} 0%, ${brand}dd 100%)`,
-    boxShadow: `0 4px 20px ${brand}40`
-  } : {};
-  
+  const base = "inline-flex items-center justify-center gap-3 px-6 py-4 border text-[10px] uppercase tracking-[0.15em] font-medium transition-all duration-300";
+  const solid = isPrimary
+    ? "border-slate-900 bg-slate-900 text-white hover:bg-slate-800"
+    : "border-slate-200/50 bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900";
+  const outline = "border-slate-200/50 bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900";
+
   const cls = `${base} ${variant === "solid" ? solid : outline}`;
-  
+
   if (href) {
     return (
-      <a href={href} target="_blank" rel="noreferrer" className={cls} style={primaryStyle} aria-label={ariaLabel}>
+      <a href={href} target="_blank" rel="noreferrer" className={cls} aria-label={ariaLabel}>
         {children}
       </a>
     );
   }
   return (
-    <button onClick={onClick} className={cls} style={primaryStyle} aria-label={ariaLabel}>
+    <button onClick={onClick} className={cls} aria-label={ariaLabel}>
       {children}
     </button>
   );
@@ -80,7 +74,7 @@ function ActionButton({ href, onClick, children, variant = "solid", ariaLabel, i
 
 export default function Contact() {
   const c = content?.contact || {};
-  const brand = content?.brandColor || "#48aab7";
+  const brand = content?.brandColor || "#41b3bc";
   const [openPreview, setOpenPreview] = useState(false);
 
   // Build a .vcf (vCard) data URL so users can save your contact
@@ -105,135 +99,134 @@ export default function Contact() {
   }, [c]);
 
   return (
-    <section id="contact" className="relative">
-      {/* soft brand background */}
-      <div
-        className="absolute inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(1200px 400px at 10% -10%, rgba(72,170,183,0.15), transparent 60%), radial-gradient(1200px 400px at 90% 110%, rgba(72,170,183,0.15), transparent 60%)"
-        }}
-      />
+    <section id="contact" className="relative" style={{ background: 'linear-gradient(to bottom, #0a0a0a, #050505)' }}>
+      <div className="max-w-6xl mx-auto px-6 py-20 md:py-32">
+        <div className="text-xs uppercase tracking-[0.25em] text-text-tertiary font-normal mb-8">
+          Contact
+        </div>
+        <h2 className="text-4xl md:text-6xl font-bold text-white leading-tight tracking-tight mb-16">
+          Let's work together
+        </h2>
 
-      <div className="max-w-5xl mx-auto px-4 py-12 md:py-16">
         <div className="flex justify-center">
-          {/* Main contact card */}
-          <article className="relative rounded-3xl border border-slate-200/70 bg-gradient-to-br from-white via-white to-slate-50/30 backdrop-blur-sm shadow-xl shadow-slate-900/5 p-8 md:p-10 overflow-hidden w-full max-w-3xl transition-all duration-300 hover:shadow-2xl hover:shadow-slate-900/10">
-            {/* ndu-icon watermark (hidden automatically if image fails) */}
+          {/* Main contact card - minimalist */}
+          <article className="relative card-modern p-10 md:p-16 overflow-hidden w-full max-w-3xl">
+            {/* Watermark */}
             <SafeLogo
               src={c.icon}
               alt=""
               fallbackType="none"
-              className="pointer-events-none select-none absolute -right-10 -bottom-10 w-56 md:w-72 opacity-10"
+              className="pointer-events-none select-none absolute -right-10 -bottom-10 w-56 md:w-72 opacity-[0.02]"
             />
 
-            <div className="flex items-center gap-6">
-              {/* Enhanced logo with subtle glow */}
+            <div className="flex flex-col gap-8">
+              {/* Minimalist logo */}
               <div className="relative">
-                <div 
-                  className="absolute inset-0 rounded-2xl blur-md opacity-20" 
-                  style={{ backgroundColor: brand }}
-                />
-                <SafeLogo
-                  src={c.icon}
-                  alt="Ndumiso icon"
-                  className="relative shrink-0 w-18 h-18 md:w-20 md:h-20 rounded-2xl object-contain shadow-lg ring-2 ring-white"
-                />
+                <div className="w-12 h-12 md:w-14 md:h-14 bg-white rounded-lg p-2 border border-white/10">
+                  <SafeLogo
+                    src={c.icon}
+                    alt="Ndumiso icon"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
               </div>
               <div className="flex-1">
-                <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 bg-clip-text text-transparent mb-2">
-                  Let's work together
-                </h2>
-                <p className="text-slate-600 text-base md:text-lg leading-relaxed">
+                <p className="text-sm md:text-base text-text-secondary leading-relaxed max-w-md">
                   Fast, modern websites, branding, and digital assets — tailored to your goals.
                 </p>
-                {/* Added subtle accent */}
-                <div className="mt-3 flex items-center gap-2">
-                  <div className="w-12 h-0.5 rounded-full" style={{ backgroundColor: brand }} />
-                  <span className="text-sm text-slate-500 font-medium">Ready to start?</span>
-                </div>
               </div>
             </div>
 
-            {/* Enhanced Contact actions */}
-            <div className="mt-8 space-y-4">
+            {/* Contact actions - minimalist grid */}
+            <div className="mt-12 space-y-6">
               {/* Primary CTAs */}
-              <div className="flex flex-wrap gap-3 justify-center sm:justify-start">
+              <div className="grid sm:grid-cols-2 gap-4">
                 {c.whatsapp && (
-                  <ActionButton href={c.whatsapp} variant="solid" isPrimary={true} ariaLabel="WhatsApp me">
+                  <a
+                    href={c.whatsapp}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full font-semibold text-sm transition-all duration-300 hover:scale-105"
+                    style={{ backgroundColor: '#25D366', color: 'white' }}
+                    aria-label="WhatsApp me"
+                  >
                     <FaWhatsapp className="w-4 h-4" /> <span>WhatsApp</span>
-                  </ActionButton>
+                  </a>
                 )}
                 {c.email && (
-                  <ActionButton href={`mailto:${c.email}`} variant="solid" ariaLabel="Email me">
+                  <a
+                    href={`mailto:${c.email}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-3 px-6 py-4 bg-[#41b3bc] hover:bg-[#41b3bc]-hover rounded-full font-semibold text-sm text-bg-primary transition-all duration-300 hover:scale-105"
+                    aria-label="Email me"
+                  >
                     <FaEnvelope className="w-4 h-4" /> <span>Email</span>
-                  </ActionButton>
+                  </a>
                 )}
               </div>
-              
+
               {/* Secondary actions */}
-              <div className="grid sm:grid-cols-2 gap-3">
-                {c.ecard && (
-                  <ActionButton href={c.ecard} variant="outline" ariaLabel="Open e-card">
-                    <FaCreditCard className="w-4 h-4" /> <span>View e-Card</span>
-                  </ActionButton>
-                )}
+              <div className="grid sm:grid-cols-2 gap-4">
                 {c.phone && (
                   <ActionButton href={`tel:${(c.phone || "").replace(/\s+/g, "")}`} variant="outline" ariaLabel="Call me">
-                    <FaPhone className="w-4 h-4" /> <span>{c.phone}</span>
+                    <FaPhone className="w-3 h-3" /> <span>Call</span>
                   </ActionButton>
                 )}
                 {c.vcf ? (
-                  <ActionButton href={withBase(c.vcf)} ariaLabel="Save contact">
-                    <FaDownload className="w-4 h-4" /> <span>Save contact (.vcf)</span>
+                  <ActionButton href={withBase(c.vcf)} variant="outline" ariaLabel="Save contact">
+                    <FaDownload className="w-3 h-3" /> <span>Save Contact</span>
                   </ActionButton>
                 ) : (
                   <ActionButton href={vcardUrl} variant="outline" ariaLabel="Save contact">
-                    <FaDownload className="w-4 h-4" /> <span>Save contact (.vcf)</span>
+                    <FaDownload className="w-3 h-3" /> <span>Save Contact</span>
                   </ActionButton>
                 )}
               </div>
-              
-              {/* Social Media Links */}
-              <div className="mt-6">
-                <h3 className="text-sm font-medium text-slate-500 mb-3">Follow Embark Digitals</h3>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+
+              {/* Social divider */}
+              <div className="pt-8 mt-8 border-t border-glass-border">
+                <h3 className="text-[10px] uppercase tracking-[0.2em] text-text-tertiary font-semibold mb-4">Follow</h3>
+                <div className="flex flex-wrap gap-3">
                   {c.linkedin && (
-                    <ActionButton href={c.linkedin} variant="outline" ariaLabel="LinkedIn">
-                      <FaLinkedin className="w-4 h-4" /> <span>LinkedIn</span>
-                    </ActionButton>
+                    <a
+                      href={c.linkedin}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass hover:bg-glass-hover transition-all text-sm"
+                      aria-label="LinkedIn"
+                    >
+                      <FaLinkedin className="w-4 h-4" style={{ color: '#0A66C2' }} />
+                      <span className="text-white">LinkedIn</span>
+                    </a>
                   )}
                   {c.facebook && (
-                    <ActionButton href={c.facebook} variant="outline" ariaLabel="Facebook">
-                      <FaFacebook className="w-4 h-4" /> <span>Facebook</span>
-                    </ActionButton>
+                    <a
+                      href={c.facebook}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass hover:bg-glass-hover transition-all text-sm"
+                      aria-label="Facebook"
+                    >
+                      <FaFacebook className="w-4 h-4" style={{ color: '#1877F2' }} />
+                      <span className="text-white">Facebook</span>
+                    </a>
                   )}
                   {c.instagram && (
-                    <ActionButton href={c.instagram} variant="outline" ariaLabel="Instagram">
-                      <FaInstagram className="w-4 h-4" /> <span>Instagram</span>
-                    </ActionButton>
-                  )}
-                  {c.twitter && (
-                    <ActionButton href={c.twitter} variant="outline" ariaLabel="X (Twitter)">
-                      <FaTwitter className="w-4 h-4" /> <span>X</span>
-                    </ActionButton>
+                    <a
+                      href={c.instagram}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass hover:bg-glass-hover transition-all text-sm"
+                      aria-label="Instagram"
+                    >
+                      <FaInstagram className="w-4 h-4" style={{ color: '#E4405F' }} />
+                      <span className="text-white">Instagram</span>
+                    </a>
                   )}
                 </div>
               </div>
             </div>
-
-            {/* Inline e-Card preview trigger */}
-            {c.ecard && (
-              <div className="mt-4">
-                <button
-                  onClick={() => setOpenPreview(true)}
-                  className="underline text-sm"
-                  style={{ color: brand }}
-                >
-                  Preview e-Card in page
-                </button>
-              </div>
-            )}
           </article>
         </div>
       </div>

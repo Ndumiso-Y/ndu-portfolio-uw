@@ -30,30 +30,58 @@ export default function Websites() {
 
   return (
     <section id="websites" className="bg-white section-offset">
-      <div className="max-w-6xl mx-auto px-4 py-10 md:py-14">
-        <h2 className="text-2xl md:text-3xl font-bold">Websites</h2>
-        {intro && <p className="mt-2 text-slate-600 max-w-3xl">{intro}</p>}
+      <div className="max-w-6xl mx-auto px-6 py-20 md:py-32">
+        {/* Section number with brand color accent */}
+        <div className="flex items-center gap-6 mb-8">
+          <div
+            className="text-xs uppercase tracking-[0.25em] font-semibold px-4 py-2 border-2"
+            style={{ color: brand, borderColor: brand }}
+          >
+            02 — Portfolio
+          </div>
+          <div className="flex-1 h-px" style={{ backgroundColor: brand, opacity: 0.2 }}></div>
+        </div>
 
-        <div className="mt-6 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <h2 className="text-4xl md:text-6xl font-bold text-slate-900 leading-tight tracking-tight mb-4">Websites</h2>
+        {intro && <p className="text-sm md:text-base text-slate-600 font-normal max-w-2xl">{intro}</p>}
+
+        <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {visible.map((w, i) => (
-            <article key={w.name || i} className="rounded-2xl border border-slate-200 bg-white overflow-hidden hover:shadow-sm">
+            <article
+              key={w.name || i}
+              className="group bg-white overflow-hidden border-2 border-transparent hover:border-opacity-100 transition-all duration-500"
+              style={{ borderColor: 'transparent' }}
+              onMouseEnter={(e) => e.currentTarget.style.borderColor = brand}
+              onMouseLeave={(e) => e.currentTarget.style.borderColor = 'transparent'}
+            >
               {w.thumb && (
-                <img
-                  src={w.thumb}
-                  alt={w.name || "Website"}
-                  className="w-full aspect-[16/9] object-cover bg-slate-100"
-                  loading="lazy" decoding="async"
-                />
+                <div className="overflow-hidden aspect-[16/10] bg-slate-50 relative">
+                  <img
+                    src={w.thumb}
+                    alt={w.name || "Website"}
+                    className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                    loading="lazy" decoding="async"
+                  />
+                  {/* Brand color overlay on hover */}
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500"
+                    style={{ backgroundColor: brand }}
+                  ></div>
+                </div>
               )}
-              <div className="p-4">
-                <h3 className="font-semibold">{w.name || "—"}</h3>
-                {w.brief && <p className="mt-1 text-sm text-slate-700">{w.brief}</p>}
-                <div className="mt-3">
+              <div className="p-6 border-t-4" style={{ borderColor: brand }}>
+                <h3 className="text-sm font-semibold text-slate-900 mb-2">{w.name || "—"}</h3>
+                {w.brief && <p className="text-xs text-slate-600 leading-relaxed">{w.brief}</p>}
+                <div className="mt-4">
                   {w.url && (
-                    <a href={w.url} target="_blank" rel="noreferrer"
-                       className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200"
-                       style={{ color: brand }}>
-                      Go to website
+                    <a
+                      href={w.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.15em] font-semibold transition-all duration-300 hover:translate-x-1"
+                      style={{ color: brand }}
+                    >
+                      View Project →
                     </a>
                   )}
                 </div>
@@ -62,25 +90,37 @@ export default function Websites() {
           ))}
         </div>
 
-        {/* Mobile controls */}
+        {/* Mobile controls with brand color */}
         {!isDesktop && items.length > 1 && !expanded && (
-          <div className="mt-4 flex items-center gap-2">
+          <div className="mt-8 flex items-center gap-3">
             {items.slice(1, 5).map((s, idx) => (
-              <button key={idx} onClick={() => setExpanded(true)}
-                      className="w-9 h-9 rounded-md overflow-hidden border border-slate-200">
-                <img src={s.thumb} alt="" className="w-full h-full object-cover" />
+              <button
+                key={idx}
+                onClick={() => setExpanded(true)}
+                className="w-12 h-12 overflow-hidden border-2 hover:scale-105 transition-all"
+                style={{ borderColor: brand }}
+              >
+                <img src={s.thumb} alt="" className="w-full h-full object-cover grayscale" />
               </button>
             ))}
-            <button onClick={() => setExpanded(true)} className="ml-2 text-xs underline" style={{ color: brand }}>
-              View more
+            <button
+              onClick={() => setExpanded(true)}
+              className="ml-auto text-[10px] uppercase tracking-wider font-semibold transition-all hover:translate-x-1"
+              style={{ color: brand }}
+            >
+              View more →
             </button>
           </div>
         )}
 
         {!isDesktop && items.length > 1 && expanded && (
-          <div className="mt-4">
-            <button onClick={collapse} className="text-xs underline" style={{ color: brand }}>
-              Show less
+          <div className="mt-8">
+            <button
+              onClick={collapse}
+              className="text-[10px] uppercase tracking-wider font-semibold transition-all hover:-translate-x-1"
+              style={{ color: brand }}
+            >
+              ← Show less
             </button>
           </div>
         )}

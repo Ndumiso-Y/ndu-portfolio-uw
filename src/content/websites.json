@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Koketso Rakhudu Foundation",
+    "outcome": "Non-profit foundation website promoting education and community impact",
+    "stack": ["React", "Vite", "Tailwind"],
+    "thumb": "/assets/krfthumbnail.png",
+    "url": "https://koketsorakhudufoundation.com/"
+  },
+  {
+    "name": "Being Dr Benzi",
+    "outcome": "Personal brand site with clear messaging and fast performance",
+    "stack": ["React", "Vite", "Tailwind"],
+    "thumb": "/assets/benzi-shot.jpg",
+    "url": "https://www.drbmfnkabinde.com/"
+  },
+  {
+    "name": "VLC Construction",
+    "outcome": "Corporate website with services, portfolio, and contact funnels",
+    "stack": ["React", "Vite", "Tailwind"],
+    "thumb": "/assets/vlc-shot.jpg",
+    "url": "https://www.vlc-construction.com/"
+  },
+  {
+    "name": "The Village Economy Indaba",
+    "outcome": "Program hub with sectors, gallery, and donation CTA",
+    "stack": ["React", "Vite", "Tailwind"],
+    "thumb": "/assets/tvei-shot.jpg",
+    "url": "https://www.thevillageeconomyindaba.com/"
+  },
+  {
+    "name": "Makweleng Group",
+    "outcome": "Professional website showcasing services and offerings",
+    "stack": ["React", "Vite", "Tailwind"],
+    "thumb": "/assets/MakwelengThumbnail.png",
+    "url": "https://makwelengroup.co.za/"
+  },
+  {
+    "name": "Embark Digitals",
+    "outcome": "Agency site with services, case studies, and contact",
+    "stack": ["React", "Vite", "Tailwind"],
+    "thumb": "/assets/embark-shot.jpg",
+    "url": "https://www.embarkdigitals.com"
+  }
+]

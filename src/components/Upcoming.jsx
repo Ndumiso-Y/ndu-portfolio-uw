@@ -35,13 +35,30 @@ export default function Upcoming() {
 
   return (
     <section id="upcoming" className="bg-white section-offset">
-      <div className="max-w-6xl mx-auto px-4 py-10 md:py-14">
-        <h2 className="text-2xl md:text-3xl font-bold">Upcoming Projects</h2>
-        {intro && <p className="mt-2 text-slate-600 max-w-3xl">{intro}</p>}
+      <div className="max-w-6xl mx-auto px-6 py-20 md:py-32">
+        {/* Section number with brand color accent */}
+        <div className="flex items-center gap-6 mb-8">
+          <div
+            className="text-xs uppercase tracking-[0.25em] font-semibold px-4 py-2 border-2"
+            style={{ color: brand, borderColor: brand }}
+          >
+            06 — Coming Soon
+          </div>
+          <div className="flex-1 h-px" style={{ backgroundColor: brand, opacity: 0.2 }}></div>
+        </div>
+
+        <h2 className="text-4xl md:text-6xl font-bold text-slate-900 leading-tight tracking-tight mb-4">Upcoming Projects</h2>
+        {intro && <p className="text-sm md:text-base text-slate-600 font-normal max-w-2xl">{intro}</p>}
         
-        <div className="mt-6 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {visible.map((it, i) => (
-            <article key={i} className="rounded-2xl border border-slate-200 bg-white overflow-hidden hover:shadow-sm">
+            <article
+              key={i}
+              className="group bg-white overflow-hidden border-2 border-transparent hover:border-opacity-100 transition-all duration-500"
+              style={{ borderColor: 'transparent' }}
+              onMouseEnter={(e) => e.currentTarget.style.borderColor = brand}
+              onMouseLeave={(e) => e.currentTarget.style.borderColor = 'transparent'}
+            >
               
               {/* Video content */}
               {it.video?.poster && (
@@ -161,17 +178,18 @@ export default function Upcoming() {
                 </div>
               )}
 
-              <div className="p-4">
-                <h3 className="font-semibold">{it.name || "Untitled"}</h3>
-                {it.note && <p className="text-xs text-slate-500 mt-1">{it.note}</p>}
-                {it.details && <p className="mt-2 text-sm text-slate-700">{it.details}</p>}
-                
+              <div className="p-6 border-t-4" style={{ borderColor: brand }}>
+                <h3 className="text-sm font-semibold text-slate-900">{it.name || "Untitled"}</h3>
+                {it.note && <p className="text-xs text-slate-600 mt-1">{it.note}</p>}
+                {it.details && <p className="mt-3 text-xs text-slate-600 leading-relaxed">{it.details}</p>}
+
                 {Array.isArray(it.tags) && it.tags.length > 0 && (
-                  <div className="mt-3 flex flex-wrap gap-2">
+                  <div className="mt-4 flex flex-wrap gap-2">
                     {it.tags.map((t, idx) => (
-                      <span 
-                        key={idx} 
-                        className="text-xs px-2 py-1 rounded-full border border-slate-200 bg-slate-50 text-slate-600"
+                      <span
+                        key={idx}
+                        className="text-[10px] uppercase tracking-wider px-3 py-1.5 border-2 font-semibold"
+                        style={{ borderColor: brand, color: brand }}
                       >
                         {t}
                       </span>
@@ -183,26 +201,39 @@ export default function Upcoming() {
           ))}
         </div>
 
-        {/* Mobile controls - matching other sections */}
+        {/* Mobile controls with brand color */}
         {!isDesktop && items.length > 1 && !expanded && (
-          <div className="mt-3 flex items-center gap-2">
-            {items.slice(1, 3).map((s, idx) => (
-              <button key={idx} onClick={() => setExpanded(true)} className="w-9 h-9 rounded-md overflow-hidden border border-slate-200">
+          <div className="mt-8 flex items-center gap-3">
+            {items.slice(1, 5).map((s, idx) => (
+              <button
+                key={idx}
+                onClick={() => setExpanded(true)}
+                className="w-12 h-12 overflow-hidden border-2 hover:scale-105 transition-all"
+                style={{ borderColor: brand }}
+              >
                 {s.video?.poster && (
-                  <img src={withBase(s.video.poster)} alt="" className="w-full h-full object-cover" />
+                  <img src={withBase(s.video.poster)} alt="" className="w-full h-full object-cover grayscale" />
                 )}
               </button>
             ))}
-            <button onClick={() => setExpanded(true)} className="ml-2 text-xs underline" style={{ color: brand }}>
-              View more
+            <button
+              onClick={() => setExpanded(true)}
+              className="ml-auto text-[10px] uppercase tracking-wider font-semibold transition-all hover:translate-x-1"
+              style={{ color: brand }}
+            >
+              View more →
             </button>
           </div>
         )}
 
         {!isDesktop && items.length > 1 && expanded && (
-          <div className="mt-4">
-            <button onClick={collapse} className="text-xs underline" style={{ color: brand }}>
-              Show less
+          <div className="mt-8">
+            <button
+              onClick={collapse}
+              className="text-[10px] uppercase tracking-wider font-semibold transition-all hover:-translate-x-1"
+              style={{ color: brand }}
+            >
+              ← Show less
             </button>
           </div>
         )}

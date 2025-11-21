@@ -1,0 +1,27 @@
+{
+  "name": "Ndumiso Yedwa",
+  "title": "Web Designer & Front-End Developer",
+  "lead": "Founder of Embark Digitals. I build fast, modern websites and brand assets for SMEs—combining clean UI, conversion-focused messaging, and reliable delivery.",
+  "bullets": [
+    "Front-end specialist: HTML, CSS, JavaScript with React/Tailwind builds.",
+    "Founder of Embark Digitals, working with SMEs, non-profits, and community projects.",
+    "Treehouse Front End Web Development Techdegree graduate (CodeForward sponsorship).",
+    "Blend of copy, design, and code so clients get websites that are clear, on-brand, and ready to use."
+  ],
+  "headshot": "/assets/Ndu_Blue Background.png",
+  "skills": [
+    { "name": "HTML", "description": "Semantic markup and modern HTML5 features" },
+    { "name": "CSS", "description": "Advanced styling, animations, and responsive design" },
+    { "name": "JavaScript", "description": "ES6+, DOM manipulation, and modern JavaScript" },
+    { "name": "React", "description": "Component-based UI development and state management" },
+    { "name": "Tailwind", "description": "Utility-first CSS framework for rapid styling" },
+    { "name": "Canva", "description": "Graphic design and visual content creation" },
+    { "name": "Adobe Photoshop", "description": "Photo editing and digital image manipulation" },
+    { "name": "Adobe Illustrator", "description": "Vector graphics and logo design" },
+    { "name": "Adobe InDesign", "description": "Layout design and print publication" },
+    { "name": "Claude Code", "description": "AI-powered development and code assistance" },
+    { "name": "Lovable", "description": "Full-stack web application development platform" }
+  ],
+  "ctaPrimary": "View Work",
+  "ctaSecondary": "Start a Project"
+}

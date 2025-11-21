@@ -51,18 +51,15 @@ function SkillPill({ skill, onMobileToggle, showMobileDescription, isMobile }) {
       <div className="flex flex-col">
         <button
           onClick={() => onMobileToggle(skillName)}
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 text-sm transition-all duration-200 hover:shadow-sm"
-          style={{ backgroundColor: bg, color: txt }}
+          className="flex flex-col items-center justify-center gap-2 px-3 py-4 border border-slate-200/50 hover:border-slate-300 text-xs transition-all duration-300 aspect-square"
+          style={{ backgroundColor: 'transparent' }}
         >
-          {C ? <C /> : null}
-          <span className="font-medium">{skillName}</span>
-          {description && (
-            <HiInformationCircle className="w-3 h-3 opacity-70" />
-          )}
+          {C ? <C className="w-6 h-6" style={{ color: bg }} /> : null}
+          <span className="font-normal text-[10px] text-slate-600 text-center leading-tight">{skillName}</span>
         </button>
-        
+
         {showMobileDescription && description && (
-          <div className="mt-2 px-3 py-2 bg-slate-50 rounded-lg border border-slate-200 text-xs text-slate-700 transition-all duration-200">
+          <div className="mt-2 px-3 py-2 bg-white border border-slate-200 text-[10px] text-slate-600 font-light animate-fade-in-up">
             {description}
           </div>
         )}
@@ -70,22 +67,21 @@ function SkillPill({ skill, onMobileToggle, showMobileDescription, isMobile }) {
     );
   }
 
-  // Desktop version with hover tooltip
+  // Desktop - minimalist card
   return (
     <div className="relative group">
-      <span
-        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 text-sm cursor-help transition-all duration-200 group-hover:shadow-md group-hover:-translate-y-0.5"
-        style={{ backgroundColor: bg, color: txt }}
+      <div
+        className="flex flex-col items-center justify-center gap-2 px-3 py-4 border border-slate-200/50 hover:border-[#48aab7]/30 cursor-help transition-all duration-300 aspect-square"
+        style={{ backgroundColor: 'transparent' }}
       >
-        {C ? <C /> : null}
-        <span className="font-medium">{skillName}</span>
-      </span>
-      
-      {/* Tooltip for desktop */}
+        {C ? <C className="w-6 h-6 opacity-80 group-hover:opacity-100 transition-opacity" style={{ color: bg }} /> : null}
+        <span className="font-normal text-[10px] text-slate-600 text-center leading-tight">{skillName}</span>
+      </div>
+
+      {/* Minimalist tooltip */}
       {description && (
-        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-slate-800 text-white text-xs rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10">
+        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-slate-900 text-white text-[10px] font-normal opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-20">
           {description}
-          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-slate-800"></div>
         </div>
       )}
     </div>
@@ -114,75 +110,91 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="bg-white section-offset">
-      <div className="max-w-6xl mx-auto px-4 py-14 md:py-18">
-        {/* Heading + subtitle */}
-        <div className="max-w-3xl">
-          <h2 className="text-2xl md:text-3xl font-bold">About</h2>
-          {a.title && <p className="mt-1 text-slate-700">{a.title}</p>}
+    <section id="about" className="relative bg-white section-offset overflow-hidden">
+      {/* Minimal accent line */}
+      <div className="absolute top-0 left-0 w-px h-32 bg-gradient-to-b from-[#48aab7]/40 to-transparent" aria-hidden="true" />
+
+      <div className="relative max-w-6xl mx-auto px-6 py-20 md:py-32">
+        {/* Heading */}
+        <div className="max-w-4xl">
+          <div className="text-xs uppercase tracking-[0.25em] text-slate-400 font-normal mb-8">
+            01 — Introduction
+          </div>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-slate-900 leading-[1.1] tracking-tight mb-6">
+            About
+          </h2>
+          {a.title && (
+            <p className="text-base md:text-lg text-slate-600 font-normal max-w-2xl">
+              {a.title}
+            </p>
+          )}
 
           {a.name && (
-            <div className="mt-2">
-              <span className="relative inline-block text-xl font-semibold">
-                <span
-                  aria-hidden
-                  className="halo-brand"
-                  style={{
-                    background: `radial-gradient(60% 50% at 50% 58%, ${brand}, transparent 65%)`,
-                  }}
-                />
-                <span className="relative z-10">{a.name}</span>
+            <div className="mt-8">
+              <span className="text-lg md:text-xl text-slate-900 font-medium">
+                {a.name}
               </span>
             </div>
           )}
         </div>
 
-        {/* Bio — wider and more relaxed */}
+        {/* Bio */}
         {a.bio && (
-          <p className="mt-5 text-slate-700 max-w-3xl leading-relaxed">
+          <p className="mt-16 text-sm md:text-base text-slate-700 max-w-2xl leading-relaxed">
             {a.bio}
           </p>
         )}
 
-        {/* Stats in roomy chips */}
+        {/* Stats */}
         {(a.stats?.years || a.stats?.activeClients) && (
-          <div className="mt-6 flex flex-wrap gap-6 text-slate-800">
+          <div className="mt-16 flex flex-wrap gap-12 text-slate-900">
             {a.stats?.years && (
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 bg-slate-50">
-                <span className="text-2xl font-extrabold">{a.stats.years}+</span>
-                <span className="text-sm">years coding</span>
+              <div className="inline-flex flex-col gap-2">
+                <span className="text-5xl md:text-6xl font-bold tracking-tight">
+                  {a.stats.years}+
+                </span>
+                <span className="text-xs uppercase tracking-[0.15em] text-slate-500 font-medium">
+                  Years Coding
+                </span>
               </div>
             )}
             {a.stats?.activeClients && (
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 bg-slate-50">
-                <span className="text-2xl font-extrabold">{a.stats.activeClients}</span>
-                <span className="text-sm">active clients</span>
+              <div className="inline-flex flex-col gap-2">
+                <span className="text-5xl md:text-6xl font-bold tracking-tight">
+                  {a.stats.activeClients}
+                </span>
+                <span className="text-xs uppercase tracking-[0.15em] text-slate-500 font-medium">
+                  Active Clients
+                </span>
               </div>
             )}
           </div>
         )}
 
-        {/* Divider */}
-        <div className="mt-8 mb-6 h-px bg-slate-200" />
+        {/* Minimal divider */}
+        <div className="relative mt-20 mb-16">
+          <div className="w-full h-px bg-slate-200" />
+        </div>
 
-        {/* Skills — spread out, wrap nicely */}
+        {/* Skills — minimalist grid */}
         {Array.isArray(a.skills) && a.skills.length > 0 && (
           <>
-            <div className="flex items-center gap-2">
-              <h3 className="font-semibold">Skills</h3>
+            <div className="flex items-baseline gap-4 mb-10">
+              <h3 className="text-xs uppercase tracking-[0.15em] text-slate-500 font-semibold">
+                Technical Skills
+              </h3>
               {isMobile && (
-                <span className="text-xs text-slate-500 flex items-center gap-1">
-                  <HiInformationCircle className="w-3 h-3" />
+                <span className="text-[10px] uppercase tracking-wider text-slate-400 font-normal">
                   Tap to learn more
                 </span>
               )}
             </div>
-            <div className="mt-4 flex flex-wrap gap-3 max-w-5xl">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-5xl">
               {a.skills.map((skill, i) => {
                 const skillName = typeof skill === 'string' ? skill : skill.name;
                 return (
-                  <SkillPill 
-                    key={i} 
+                  <SkillPill
+                    key={i}
                     skill={skill}
                     onMobileToggle={handleMobileToggle}
                     showMobileDescription={expandedSkill === skillName}

@@ -1,7 +1,7 @@
 // src/content.js
 export const content = {
   // ===== THEME =====
-  brandColor: "#48aab7",
+  brandColor: "#41b3bc",
   // (optional) fine-tune global colors; safe to remove if not used
   palette: {
     // ink:   "#0f172a",
@@ -66,11 +66,11 @@ export const content = {
       repo: "",
     },
     {
-      name: "Being VLC Construction",
+      name: "VLC Construction",
       brief:
         "Corporate website for a construction firm — services, portfolio, and contact funnels.",
       thumb: "/assets/vlc-shot.jpg",
-      url: "https://ndumiso-y.github.io/vlc-website/",
+      url: "https://www.vlc-construction.com/",
       repo: "",
     },
     {
@@ -78,7 +78,15 @@ export const content = {
       brief:
         "Program hub for TVEI — highlights, sectors, gallery, and donation call-to-action.",
       thumb: "/assets/tvei-shot.jpg",
-      url: "https://ndumiso-y.github.io/village-econonomy-indaba-website/#/about",
+      url: "https://www.thevillageeconomyindaba.com/",
+      repo: "",
+    },
+    {
+      name: "Makweleng Group",
+      brief:
+        "Professional website for Makweleng Group — showcasing services and business offerings.",
+      thumb: "/assets/makweleng-shot.jpg",
+      url: "https://makwelengroup.co.za/",
       repo: "",
     },
     {
@@ -310,16 +318,6 @@ I could guess a letter only once. After I guessed a letter, my programming disab
       },
     },
     {
-      name: "Makweleng Butchery",
-      note: "New website build underway.",
-      details:
-        "Makweleng Butchery is joining our roster. I'm building a clean, informative site that highlights product quality, weekly specials, and conversions.",
-      tags: ["New Client", "Website Build"],
-      video: {
-        poster: "/assets/graphic-1.jpg", // Placeholder until real poster
-      },
-    },
-    {
       name: "Funeka Placements",
       note: "Website + Social Media Management",
       details:
@@ -351,6 +349,16 @@ I could guess a letter only once. After I guessed a letter, my programming disab
       zoom: true,
       note: "Next: UI/UX → Full-Stack",
       aspect: "4/3"
+    },
+    {
+      key: "treehouse-techdegree",
+      name: "Treehouse Techdegree – Front End Web Development",
+      img: "/assets/techdegree.png",
+      modalImg: "/assets/techdegree.png",
+      zoom: true,
+      snippet: "Certified in the fundamentals of HTML, CSS and JavaScript after completing the Treehouse Front End Web Development Techdegree (issued Sept 17, 2025).",
+      note: "Certificate — Front End Web Dev",
+      aspect: "16/9"
     }
   ],
 
