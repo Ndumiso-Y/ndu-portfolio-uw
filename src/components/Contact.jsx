@@ -54,7 +54,7 @@ function ActionButton({ href, onClick, children, variant = "solid", ariaLabel, i
   const solid = isPrimary
     ? "border-slate-900 bg-slate-900 text-white hover:bg-slate-800"
     : "border-slate-200/50 bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900";
-  const outline = "border-slate-200/50 bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900";
+  const outline = "border-white/20 bg-transparent text-white hover:border-white/40 hover:bg-white/5";
 
   const cls = `${base} ${variant === "solid" ? solid : outline}`;
 

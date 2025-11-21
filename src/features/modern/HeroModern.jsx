@@ -76,7 +76,7 @@ export default function HeroModern() {
             >
               {/* Status pill */}
               <div className="inline-flex items-center px-5 py-2 text-[11px] tracking-[0.15em] uppercase rounded-full border border-white/10 bg-white/5 text-white/60 w-fit">
-                Available for freelance
+                Web Developer
               </div>
 
               {/* Primary heading - BIGGER */}

@@ -129,9 +129,6 @@ export default function AboutModern() {
               >
                 Let's Work Together
               </a>
-              <button className="px-8 py-4 glass hover:bg-glass-hover rounded-full font-semibold text-sm text-white transition-all duration-300">
-                Download Resume
-              </button>
             </div>
           </div>
         </div>
