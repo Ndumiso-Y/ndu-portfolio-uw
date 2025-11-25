@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import websitesData from '@/content/websites.json'
+import { trackWebProjectClick } from '../../lib/analytics'
 
 function WebsiteCard({ website, index }) {
   const [isHovered, setIsHovered] = useState(false)
@@ -101,6 +102,7 @@ export default function WorkShowcase() {
             <a
               key={website.name}
               href={website.url}
+              onClick={() => trackWebProjectClick(website.name)}
               target="_blank"
               rel="noopener noreferrer"
               className="reveal-up group"

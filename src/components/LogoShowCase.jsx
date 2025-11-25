@@ -2,6 +2,7 @@
 import { withBase } from '../lib/withBase';
 import React, { useEffect, useState } from "react";
 import { content } from "../content";
+import { trackGraphicsSlidesClick } from '../lib/analytics';
 
 function Chip({ children }) {
   return (
@@ -163,6 +164,7 @@ export default function LogoShowCase() {
                         {it.download && (
                           <a
                             href={pdfLink(it.download)}
+                            onClick={() => trackGraphicsSlidesClick(it.name || 'Logo design')}
                             target="_blank"
                             rel="noreferrer"
                             className="transition-all hover:translate-x-1"
@@ -174,6 +176,7 @@ export default function LogoShowCase() {
                         {it.brief && (
                           <a
                             href={pdfLink(it.brief)}
+                            onClick={() => trackGraphicsSlidesClick(`${it.name || 'Logo'} - Brief`)}
                             target="_blank"
                             rel="noreferrer"
                             className="transition-all hover:translate-x-1"

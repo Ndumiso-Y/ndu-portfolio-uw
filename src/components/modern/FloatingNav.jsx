@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { content } from '../../content'
 import { withBase } from '../../lib/withBase'
+import { trackNavClick } from '../../lib/analytics'
 
 const navLinks = [
-  { href: '#about', label: 'About' },
-  { href: '#websites', label: 'Websites' },
-  { href: '#graphics', label: 'Graphics' },
-  { href: '#social', label: 'Social' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#about', label: 'About', section: 'about' },
+  { href: '#websites', label: 'Websites', section: 'websites' },
+  { href: '#graphics', label: 'Graphics', section: 'graphics' },
+  { href: '#social', label: 'Social', section: 'social' },
+  { href: '#projects', label: 'Projects', section: 'projects' },
+  { href: '#contact', label: 'Contact', section: 'contact' },
 ]
 
 export default function FloatingNav() {
@@ -66,6 +67,7 @@ export default function FloatingNav() {
             <a
               key={link.href}
               href={link.href}
+              onClick={() => trackNavClick(link.section)}
               className={`text-sm font-medium transition-colors relative group ${
                 activeSection === link.href.slice(1)
                   ? 'text-[#41b3bc]'

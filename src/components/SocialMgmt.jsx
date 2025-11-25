@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { content } from "../content";
 import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { trackSocialProfileClick } from '../lib/analytics';
 
 function PlatformBadge({ type }) {
   const t = (type || "").toLowerCase();
@@ -15,18 +16,23 @@ function PlatformBadge({ type }) {
   );
 }
 
-function SocialLink({ type, url }) {
+function SocialLink({ type, url, brand }) {
   const t = (type || "").toLowerCase();
   let Icon = FaFacebook, color = "#4267B2";
   if (t.includes("linkedin")) { Icon = FaLinkedin; color = "#0A66C2"; }
   if (t.includes("instagram")) { Icon = FaInstagram; color = "#E1306C"; }
   const label = (type || "Link").charAt(0).toUpperCase() + (type || "Link").slice(1);
   return (
-    <a href={url || "#"} target="_blank" rel="noreferrer"
-       className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 bg-white transition"
-       style={{ color }}
-       onMouseEnter={(e)=>{ e.currentTarget.style.backgroundColor=color; e.currentTarget.style.color="white"; }}
-       onMouseLeave={(e)=>{ e.currentTarget.style.backgroundColor="white"; e.currentTarget.style.color=color; }}>
+    <a
+      href={url || "#"}
+      onClick={() => trackSocialProfileClick(type, brand)}
+      target="_blank"
+      rel="noreferrer"
+      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 bg-white transition"
+      style={{ color }}
+      onMouseEnter={(e)=>{ e.currentTarget.style.backgroundColor=color; e.currentTarget.style.color="white"; }}
+      onMouseLeave={(e)=>{ e.currentTarget.style.backgroundColor="white"; e.currentTarget.style.color=color; }}
+    >
       <Icon /><span className="underline">{label}</span>
     </a>
   );
@@ -106,7 +112,7 @@ export default function SocialMgmt() {
                   </div>
                   {s?.desc && <p className="text-xs text-text-secondary leading-relaxed">{s.desc}</p>}
                   <div className="mt-auto pt-4 flex gap-3 flex-wrap">
-                    {links.length ? links.map((l, j)=> <SocialLink key={j} type={l?.type} url={l?.url} />)
+                    {links.length ? links.map((l, j)=> <SocialLink key={j} type={l?.type} url={l?.url} brand={s?.brand} />)
                                    : <span className="text-text-tertiary text-[10px] uppercase tracking-wider">(Add links in content.social)</span>}
                   </div>
                 </div>

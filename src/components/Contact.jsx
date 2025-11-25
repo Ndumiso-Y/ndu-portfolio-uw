@@ -2,18 +2,19 @@
 import { withBase } from '../lib/withBase';
 import React, { useMemo, useState } from "react";
 import { content } from "../content";
-import { 
-  FaWhatsapp, 
-  FaEnvelope, 
-  FaPhone, 
-  FaLinkedin, 
-  FaFacebook, 
-  FaInstagram, 
+import {
+  FaWhatsapp,
+  FaEnvelope,
+  FaPhone,
+  FaLinkedin,
+  FaFacebook,
+  FaInstagram,
   FaTwitter,
   FaIdCard,
   FaCreditCard,
-  FaDownload 
+  FaDownload
 } from 'react-icons/fa';
+import { trackWhatsAppClick, trackEmailClick, trackLinkedInClick } from '../lib/analytics';
 
 // Reusable safe image: falls back to a styled badge if the image can't load
 function SafeLogo({ src, alt = "", className = "", fallbackType = "badge" }) {
@@ -144,6 +145,7 @@ export default function Contact() {
                 {c.whatsapp && (
                   <a
                     href={c.whatsapp}
+                    onClick={trackWhatsAppClick}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full font-semibold text-sm transition-all duration-300 hover:scale-105"
@@ -156,6 +158,7 @@ export default function Contact() {
                 {c.email && (
                   <a
                     href={`mailto:${c.email}`}
+                    onClick={trackEmailClick}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center justify-center gap-3 px-6 py-4 bg-[#41b3bc] hover:bg-[#41b3bc]-hover rounded-full font-semibold text-sm text-bg-primary transition-all duration-300 hover:scale-105"
@@ -191,6 +194,7 @@ export default function Contact() {
                   {c.linkedin && (
                     <a
                       href={c.linkedin}
+                      onClick={() => trackLinkedInClick('contact')}
                       target="_blank"
                       rel="noreferrer"
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass hover:bg-glass-hover transition-all text-sm"
@@ -203,6 +207,7 @@ export default function Contact() {
                   {c.facebook && (
                     <a
                       href={c.facebook}
+                      onClick={() => trackLinkedInClick('facebook')}
                       target="_blank"
                       rel="noreferrer"
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass hover:bg-glass-hover transition-all text-sm"
@@ -215,6 +220,7 @@ export default function Contact() {
                   {c.instagram && (
                     <a
                       href={c.instagram}
+                      onClick={() => trackLinkedInClick('instagram')}
                       target="_blank"
                       rel="noreferrer"
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass hover:bg-glass-hover transition-all text-sm"
