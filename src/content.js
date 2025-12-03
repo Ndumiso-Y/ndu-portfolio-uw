@@ -58,11 +58,11 @@ export const content = {
   // --- Website Design ---
   websites: [
     {
-      name: "Being Dr Benzi",
+      name: "Dr Benzi",
       brief:
         "Personal brand site for Dr. Benzi — clear messaging, modern UI, and fast performance.",
       thumb: "/assets/benzi-shot.jpg",
-      url: "https://www.drbmfnkabinde.com/",
+      url: "https://ndumiso-y.github.io/Dr--Benzi--Nkabinde/",
       repo: "",
     },
     {
