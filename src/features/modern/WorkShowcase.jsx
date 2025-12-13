@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import websitesData from '@/content/websites.json'
 import { trackWebProjectClick } from '../../lib/analytics'
+import { AssetImage } from '@/components/ui/AssetImage'
 
 function WebsiteCard({ website, index }) {
   const [isHovered, setIsHovered] = useState(false)
@@ -13,7 +14,7 @@ function WebsiteCard({ website, index }) {
     >
       {/* Image only */}
       <div className="aspect-[4/3] overflow-hidden relative">
-        <img
+        <AssetImage
           src={website.thumb}
           alt={website.name}
           className={`w-full h-full object-cover transition-transform duration-700 ${

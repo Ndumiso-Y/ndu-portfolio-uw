@@ -1,6 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { withBase } from '@/lib/withBase'
 
 export default function MiniAudioPlayer({ src, description }) {
+  // Apply withBase to audio src
+  const audioSrc = (src && (src.startsWith('/assets/') || src.startsWith('/media/')))
+    ? withBase(src)
+    : src;
   const [isPlaying, setIsPlaying] = useState(false)
   const [duration, setDuration] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
@@ -49,7 +54,7 @@ export default function MiniAudioPlayer({ src, description }) {
 
   return (
     <div className="glass rounded-lg p-3 space-y-2">
-      <audio ref={audioRef} src={src} preload="metadata" />
+      <audio ref={audioRef} src={audioSrc} preload="metadata" />
 
       <div className="flex items-center gap-3">
         {/* Play/Pause button */}

@@ -3,6 +3,7 @@ import websitesData from "@/content/websites.json"
 import { Card } from "@/components/ui/Card"
 import { SectionHeading } from "@/components/ui/SectionHeading"
 import { Tag } from "@/components/ui/Tag"
+import { AssetImage } from "@/components/ui/AssetImage"
 
 function WebsiteCard({ website, index }) {
   return (
@@ -13,7 +14,7 @@ function WebsiteCard({ website, index }) {
       <Card className="group flex flex-col overflow-hidden p-0 bg-white dark:bg-slate-900/50">
         {website.thumb && (
           <div className="overflow-hidden aspect-[16/10] bg-slate-50 dark:bg-slate-800 relative">
-            <img
+            <AssetImage
               src={website.thumb}
               alt={website.name || "Website"}
               className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-110 group-hover:rotate-1 transition-all duration-700"

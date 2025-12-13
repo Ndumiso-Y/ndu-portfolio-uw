@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import projectsData from '@/content/projects.json'
 import MiniAudioPlayer from '@/components/modern/MiniAudioPlayer'
 import { withBase } from '@/lib/withBase'
+import { AssetImage } from '@/components/ui/AssetImage'
 
 function ProjectCard({ project }) {
   return (
@@ -9,7 +10,7 @@ function ProjectCard({ project }) {
       {/* Thumbnail */}
       {project.thumb && (
         <div className="relative w-full h-48 rounded-xl overflow-hidden group/img">
-          <img
+          <AssetImage
             src={project.thumb}
             alt={project.name}
             className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-110"
