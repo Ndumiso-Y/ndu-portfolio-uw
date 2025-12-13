@@ -1,5 +1,6 @@
 // src/components/Footer.jsx
 import React from "react";
+import { withBase } from "../lib/withBase";
 
 export default function Footer(){
   return (
@@ -9,7 +10,7 @@ export default function Footer(){
           {/* Brand */}
           <div className="flex flex-col gap-4">
             <div className="w-10 h-10 bg-slate-100 rounded-lg p-1.5 border border-slate-200">
-              <img src="/assets/ndu-icon.png" alt="Ndumiso icon" className="w-full h-full object-contain" />
+              <img src={withBase("/assets/ndu-icon.png")} alt="Ndumiso icon" className="w-full h-full object-contain" />
             </div>
             <div>
               <p className="text-xs uppercase tracking-[0.15em] font-semibold text-slate-900">Ndumiso Yedwa</p>
