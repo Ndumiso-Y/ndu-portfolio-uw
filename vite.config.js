@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 
 const target = process.env.BUILD_TARGET || 'gh'
-const base = process.env.BASE_PATH ?? (target === 'gh' ? '/' : '/')
+const base = process.env.BASE_PATH ?? (target === 'gh' ? '/ndu-portfolio-uw/' : '/')
 
 export default defineConfig({
   plugins: [react()],

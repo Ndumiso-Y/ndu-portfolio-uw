@@ -6,3 +6,12 @@ dist/
 dist.zip
 .claude/
 QA.md
+
+# Large media files
+*.psd
+*.ai
+*.mp4
+*.mov
+
+# Documentation
+*.pdf
