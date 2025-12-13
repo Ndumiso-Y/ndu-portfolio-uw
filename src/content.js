@@ -41,7 +41,7 @@ const rawContent = {
     title: "Web Designer & Front-End Developer",
     bio:
       "Founder of Embark Digitals. I design and build fast, modern websites and brand assets for SMEs—combining clean UI, conversion-focused messaging, and reliable delivery.",
-    headshot: "/assets/ndu-headshot.jpg",
+    headshot: "/assets/ndu-portrait.jpg",
     skills: [
       { name: "HTML", description: "Semantic markup and modern HTML5 features" },
       { name: "CSS", description: "Advanced styling, animations, and responsive design" },

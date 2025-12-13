@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { withBase } from '@/lib/withBase'
 import { trackGetInTouchClick, trackViewWorkClick, trackECardClick } from '../../lib/analytics'
 
 export default function HeroModern() {
@@ -161,7 +162,7 @@ export default function HeroModern() {
               style={{ transitionDelay: '400ms' }}
             >
               <img
-                src="/assets/NdumisoNobackground.png"
+                src={withBase("/assets/NdumisoNobackground.png")}
                 alt="Ndumiso Yedwa - Founder of Embark Digitals"
                 className="h-[70vh] md:h-[80vh] lg:h-[90vh] xl:h-[95vh] w-auto object-contain object-bottom"
                 style={{

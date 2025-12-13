@@ -1,5 +1,6 @@
 // src/components/Hero.jsx
 import React, { useEffect, useState } from "react";
+import { withBase } from "../lib/withBase";
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
@@ -154,7 +155,7 @@ export default function Hero() {
               style={{ transitionDelay: '400ms' }}
             >
               <img
-                src="/assets/NdumisoNobackground.png"
+                src={withBase("/assets/NdumisoNobackground.png")}
                 alt="Ndumiso Yedwa - Founder of Embark Digitals"
                 className="h-[60vh] md:h-[70vh] lg:h-[85vh] w-auto object-contain object-bottom"
                 style={{
