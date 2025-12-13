@@ -26,13 +26,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-{icon ? (
-  <img src={icon} alt="logo" className="w-8 h-8 rounded-lg object-contain" />
-) : (
-  <div className="w-8 h-8 rounded-lg border border-slate-200 grid place-items-center text-xs">NY</div>
-)}
-
-
   return (
     <nav className={`sticky top-0 z-40 transition-all duration-300 ${
       scrolled
