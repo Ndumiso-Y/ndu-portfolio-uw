@@ -10,8 +10,8 @@ QA.md
 # Large media files
 *.psd
 *.ai
-*.mp4
 *.mov
+# *.mp4  # Re-enabled to allow learning-journey-intro.mp4
 
 # Documentation
 *.pdf

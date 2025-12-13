@@ -1,7 +1,6 @@
 // src/content.js
-import { withBase } from './lib/withBase';
 
-const rawContent = {
+export const content = {
   // ===== THEME =====
   brandColor: "#41b3bc",
   // (optional) fine-tune global colors; safe to remove if not used
@@ -371,31 +370,3 @@ I could guess a letter only once. After I guessed a letter, my programming disab
     icon: "/assets/ndu-icon.png",                 // navbar/footer logo
   },
 };
-
-// Helper to recursively apply withBase to all asset paths
-function processAssetPaths(obj) {
-  if (typeof obj === 'string') {
-    // Apply withBase to strings that look like asset paths
-    if (obj.startsWith('/assets/') || obj.startsWith('/media/')) {
-      return withBase(obj);
-    }
-    return obj;
-  }
-
-  if (Array.isArray(obj)) {
-    return obj.map(item => processAssetPaths(item));
-  }
-
-  if (obj && typeof obj === 'object') {
-    const processed = {};
-    for (const key in obj) {
-      processed[key] = processAssetPaths(obj[key]);
-    }
-    return processed;
-  }
-
-  return obj;
-}
-
-// Export processed content with correct base paths
-export const content = processAssetPaths(rawContent);
