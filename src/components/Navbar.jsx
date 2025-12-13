@@ -16,7 +16,7 @@ const links = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const icon = content?.contact?.icon ? withBase(content.contact.icon) : null;
+  const icon = content?.contact?.icon;
 
   useEffect(() => {
     const handleScroll = () => {
