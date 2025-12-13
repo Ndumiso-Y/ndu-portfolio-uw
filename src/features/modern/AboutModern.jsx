@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import aboutData from '@/content/about.json'
 import { content } from '../../content'
+import { withBase } from '@/lib/withBase'
 import {
   SiHtml5, SiCss3, SiJavascript, SiReact, SiTailwindcss,
   SiCanva, SiAdobephotoshop, SiAdobeillustrator, SiAdobeindesign
@@ -56,7 +57,7 @@ export default function AboutModern() {
               <div className="relative w-full max-w-md mx-auto">
                 <div className="aspect-[3/4] rounded-3xl overflow-hidden bg-gradient-to-br from-[#41b3bc]/20 to-transparent p-1">
                   <img
-                    src="/assets/Ndu_Blue Background.png"
+                    src={withBase("/assets/Ndu_Blue Background.png")}
                     alt={aboutData.name}
                     className="w-full h-full object-cover rounded-3xl"
                     style={{

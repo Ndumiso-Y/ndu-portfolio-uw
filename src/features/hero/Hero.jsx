@@ -214,7 +214,7 @@ export default function Hero() {
             </p>
             <div className="w-36 h-36 bg-white">
               <img
-                src="/assets/QRcodeBusiness.jpg"
+                src={withBase("/assets/QRcodeBusiness.jpg")}
                 alt="QR Code - Connect with Ndumiso"
                 className="w-full h-full object-cover"
                 loading="lazy"
@@ -231,7 +231,7 @@ export default function Hero() {
             </p>
             <div className="w-36 h-36 bg-white">
               <img
-                src="/assets/QRcodeBusiness.jpg"
+                src={withBase("/assets/QRcodeBusiness.jpg")}
                 alt="QR Code - Connect with Ndumiso"
                 className="w-full h-full object-cover"
                 loading="lazy"

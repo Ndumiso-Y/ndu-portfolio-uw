@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import projectsData from '@/content/projects.json'
 import MiniAudioPlayer from '@/components/modern/MiniAudioPlayer'
+import { withBase } from '@/lib/withBase'
 
 function ProjectCard({ project }) {
   return (
@@ -118,7 +119,7 @@ export default function ProjectCarousel() {
                   preload="auto"
                   aria-label="Intro clip from my front-end learning journey series"
                 >
-                  <source src="/media/learning-journey-intro.mp4" type="video/mp4" />
+                  <source src={withBase("/media/learning-journey-intro.mp4")} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               </div>
