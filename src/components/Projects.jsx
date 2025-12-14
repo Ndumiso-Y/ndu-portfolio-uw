@@ -63,9 +63,9 @@ export default function Projects() {
               {p.thumb && (
                 <div className="overflow-hidden aspect-[16/10] bg-slate-50 relative">
                   <picture>
-                    <source srcSet={p.thumb.replace(/\.[^/.]+$/, '.avif')} type="image/avif" />
-                    <source srcSet={p.thumb.replace(/\.[^/.]+$/, '.webp')} type="image/webp" />
-                    <img src={p.thumb} alt={p.name||"Project"} className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" loading="lazy" />
+                    <source srcSet={withBase(p.thumb.replace(/\.[^/.]+$/, '.avif'))} type="image/avif" />
+                    <source srcSet={withBase(p.thumb.replace(/\.[^/.]+$/, '.webp'))} type="image/webp" />
+                    <img src={withBase(p.thumb)} alt={p.name||"Project"} className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" loading="lazy" />
                   </picture>
                   {/* Brand color overlay on hover */}
                   <div
@@ -173,12 +173,12 @@ export default function Projects() {
             {modalProject.thumb && (
               <div className="mb-4">
                 <picture>
-                  <source srcSet={modalProject.thumb.replace(/\.[^/.]+$/, '.avif')} type="image/avif" />
-                  <source srcSet={modalProject.thumb.replace(/\.[^/.]+$/, '.webp')} type="image/webp" />
-                  <img 
-                    src={modalProject.thumb} 
-                    alt={modalProject.name||"Project"} 
-                    className="w-full aspect-[16/9] object-cover bg-slate-100 rounded-lg" 
+                  <source srcSet={withBase(modalProject.thumb.replace(/\.[^/.]+$/, '.avif'))} type="image/avif" />
+                  <source srcSet={withBase(modalProject.thumb.replace(/\.[^/.]+$/, '.webp'))} type="image/webp" />
+                  <img
+                    src={withBase(modalProject.thumb)}
+                    alt={modalProject.name||"Project"}
+                    className="w-full aspect-[16/9] object-cover bg-slate-100 rounded-lg"
                   />
                 </picture>
               </div>
