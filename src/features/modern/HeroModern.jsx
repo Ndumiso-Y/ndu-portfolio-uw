@@ -247,7 +247,7 @@ export default function HeroModern() {
               </div>
               <div className="bg-white p-3 rounded-lg flex justify-center">
                 <img
-                  src="/assets/QRcodeBusiness.jpg"
+                  src={withBase("/assets/QRcodeBusiness.jpg")}
                   alt="Scan to open Ndumiso's e-card contact details"
                   className="w-32 h-32 rounded"
                 />
