@@ -42,9 +42,6 @@ export default function Contact() {
   return (
     <section id="contact" className="relative" style={{ background: 'linear-gradient(to bottom, #0a0a0a, #050505)' }}>
       <div className="max-w-6xl mx-auto px-6 py-20 md:py-32">
-        <div className="text-xs uppercase tracking-[0.25em] text-text-tertiary font-normal mb-8">
-          Contact
-        </div>
         <h2 className="text-4xl md:text-6xl font-bold text-white leading-tight tracking-tight mb-16">
           Let's build something great together.
         </h2>
