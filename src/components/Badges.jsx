@@ -1,6 +1,7 @@
 // src/components/Badges.jsx
 import React, { useState } from "react";
 import { content } from "../content";
+import { AssetImage } from "./ui/AssetImage";
 
 export default function Badges() {
   const items = Array.isArray(content?.badges) ? content.badges : [];
@@ -51,7 +52,7 @@ export default function Badges() {
                 onClick={onCardClick}
               >
                 <div className={`w-full ${aspectClass} bg-slate-50 overflow-hidden relative`}>
-                  <img
+                  <AssetImage
                     src={b.img}
                     alt={b.name || "Badge"}
                     className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"

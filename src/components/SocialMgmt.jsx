@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { content } from "../content";
 import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { trackSocialProfileClick } from '../lib/analytics';
+import { AssetImage } from './ui/AssetImage';
 
 function PlatformBadge({ type }) {
   const t = (type || "").toLowerCase();
@@ -43,7 +44,7 @@ function Thumb({ src, brand, aspect="16/9" }) {
   return (
     <div className={`relative w-full ${aspectClass} bg-slate-100 overflow-hidden`}>
       {src ? (
-        <img src={src} alt={brand||""} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <AssetImage src={src} alt={brand||""} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
       ) : (
         <div className="absolute inset-0 grid place-items-center text-3xl text-white" style={{ background:"#41b3bc" }}>
           {(brand||"").split(" ").map(w=>w[0]).join("").slice(0,3).toUpperCase() || "—"}

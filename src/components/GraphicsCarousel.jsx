@@ -1,6 +1,7 @@
 // src/components/GraphicsCarousel.jsx
 import React from 'react'
 import { content } from '../content'
+import { AssetImage } from './ui/AssetImage'
 
 export default function GraphicsSection() {
   return (
@@ -13,7 +14,7 @@ export default function GraphicsSection() {
         <div className="grid sm:grid-cols-3 gap-4">
           {content.graphicsPpts && content.graphicsPpts.map((p,i)=>(
             <a key={i} href={p.file} target="_blank" rel="noreferrer" className="block group">
-              <img
+              <AssetImage
                 src={p.thumb}
                 alt={p.title}
                 loading="lazy"
