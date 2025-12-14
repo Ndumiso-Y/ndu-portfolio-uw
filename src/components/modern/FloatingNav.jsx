@@ -9,7 +9,6 @@ const navLinks = [
   { href: '#graphics', label: 'Graphics', section: 'graphics' },
   { href: '#social', label: 'Social', section: 'social' },
   { href: '#projects', label: 'Projects', section: 'projects' },
-  { href: '#contact', label: 'Contact', section: 'contact' },
 ]
 
 export default function FloatingNav() {

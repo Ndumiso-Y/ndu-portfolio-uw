@@ -95,17 +95,11 @@ export default function Hero() {
                 Founder of Embark Digitals — building fast, modern websites, branding, and digital assets.
               </p>
 
-              {/* CTA Buttons */}
+              {/* CTA Button */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <a
-                  href="#contact"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-[#41b3bc] text-white font-semibold text-sm uppercase tracking-wider rounded hover:bg-[#34919a] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#41b3bc] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]"
-                >
-                  Get in Touch
-                </a>
-                <a
                   href="#websites"
-                  className="group inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white/80 font-medium text-sm uppercase tracking-wider rounded hover:border-[#41b3bc] hover:text-[#41b3bc] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                  className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#41b3bc] text-white font-semibold text-sm uppercase tracking-wider rounded hover:bg-[#34919a] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#41b3bc] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]"
                 >
                   View Work
                   <svg

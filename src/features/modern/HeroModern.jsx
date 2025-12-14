@@ -99,16 +99,9 @@ export default function HeroModern() {
               {/* CTA Buttons - BIGGER */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <a
-                  href="#contact"
-                  onClick={trackGetInTouchClick}
-                  className="inline-flex items-center justify-center px-10 py-4 bg-[#41b3bc] text-white font-bold text-sm uppercase tracking-[0.1em] rounded-lg hover:bg-[#4ec5cf] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#41b3bc]/20 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#41b3bc] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]"
-                >
-                  Get in touch
-                </a>
-                <a
                   href="#websites"
                   onClick={trackViewWorkClick}
-                  className="group inline-flex items-center justify-center gap-2 px-10 py-4 border border-[#41b3bc]/40 text-white/90 font-semibold text-sm uppercase tracking-[0.1em] rounded-lg hover:border-[#41b3bc] hover:bg-[#41b3bc]/10 hover:-translate-y-0.5 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                  className="group inline-flex items-center justify-center gap-2 px-10 py-4 bg-[#41b3bc] text-white font-bold text-sm uppercase tracking-[0.1em] rounded-lg hover:bg-[#4ec5cf] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#41b3bc]/20 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#41b3bc] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]"
                 >
                   View work
                   <svg
