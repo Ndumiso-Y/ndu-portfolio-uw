@@ -132,7 +132,7 @@ export default function SocialMgmt() {
                 className="w-12 h-12 overflow-hidden border-2 hover:scale-105 transition-all"
                 style={{ borderColor: brand }}
               >
-                <img src={s.thumb || content?.socialThumbs?.[s.thumbKey]} alt="" className="w-full h-full object-cover grayscale"/>
+                <AssetImage src={s.thumb || content?.socialThumbs?.[s.thumbKey]} alt="" className="w-full h-full object-cover grayscale"/>
               </button>
             ))}
             <button

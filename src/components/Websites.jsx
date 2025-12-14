@@ -2,6 +2,7 @@
 import { withBase } from '../lib/withBase';
 import React, { useEffect, useState } from "react";
 import { content } from "../content";
+import { AssetImage } from "./ui/AssetImage";
 
 export default function Websites() {
   const items = Array.isArray(content?.websites) ? content.websites : [];
@@ -56,7 +57,7 @@ export default function Websites() {
             >
               {w.thumb && (
                 <div className="overflow-hidden aspect-[16/10] bg-slate-50 relative">
-                  <img
+                  <AssetImage
                     src={w.thumb}
                     alt={w.name || "Website"}
                     className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
@@ -100,7 +101,7 @@ export default function Websites() {
                 className="w-12 h-12 overflow-hidden border-2 hover:scale-105 transition-all"
                 style={{ borderColor: brand }}
               >
-                <img src={s.thumb} alt="" className="w-full h-full object-cover grayscale" />
+                <AssetImage src={s.thumb} alt="" className="w-full h-full object-cover grayscale" />
               </button>
             ))}
             <button

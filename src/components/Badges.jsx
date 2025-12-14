@@ -94,7 +94,7 @@ export default function Badges() {
                   <>
                     <div className="mt-3 border border-slate-200 rounded-xl overflow-auto bg-slate-50">
                       <div className="w-full grid place-items-center" style={{ minHeight: 320 }}>
-                        <img src={items[modal.idx].snippetImg} alt="Acceptance letter snippet"
+                        <AssetImage src={items[modal.idx].snippetImg} alt="Acceptance letter snippet"
                           onContextMenu={(e)=>e.preventDefault()}
                           style={{ transform:`scale(${modal.scale})`, transformOrigin:"center center", transition:"transform 120ms ease" }}
                           className="max-w-full max-h-[70vh] object-contain" />
@@ -114,7 +114,7 @@ export default function Badges() {
               <>
                 <div className="mt-3 border border-slate-200 rounded-xl overflow-auto bg-slate-50">
                   <div className="w-full grid place-items-center" style={{ minHeight: 360 }}>
-                    <img
+                    <AssetImage
                       src={items[modal.idx].modalImg || items[modal.idx].img}
                       alt={items[modal.idx].name}
                       onContextMenu={(e)=>e.preventDefault()}
