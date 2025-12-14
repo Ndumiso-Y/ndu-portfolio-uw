@@ -164,23 +164,6 @@ export default function Hero() {
                 loading="eager"
               />
             </div>
-
-            {/* QR Connect card - Desktop */}
-            <div
-              className={`hidden lg:block absolute bottom-8 right-0 transform transition-all duration-1000 ease-out ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
-              style={{ transitionDelay: '800ms' }}
-            >
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded">
-                <p className="text-[#41b3bc] font-bold text-xs uppercase tracking-wider mb-3 text-center">Connect</p>
-                <img
-                  src={withBase("/assets/QRcodeBusiness.jpg")}
-                  alt="QR Code to connect with Ndumiso"
-                  className="w-24 h-24 rounded"
-                />
-              </div>
-            </div>
           </div>
 
           {/* RIGHT COLUMN: Service pillars */}
@@ -207,23 +190,6 @@ export default function Hero() {
                   </p>
                 </div>
               ))}
-            </div>
-          </div>
-
-          {/* QR Connect card - Mobile/Tablet */}
-          <div
-            className={`lg:hidden flex justify-center order-4 pb-12 transform transition-all duration-1000 ease-out ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
-            style={{ transitionDelay: '800ms' }}
-          >
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded">
-              <p className="text-[#41b3bc] font-bold text-xs uppercase tracking-wider mb-3 text-center">Connect</p>
-              <img
-                src={withBase("/assets/QRcodeBusiness.jpg")}
-                alt="QR Code to connect with Ndumiso"
-                className="w-24 h-24 rounded"
-              />
             </div>
           </div>
 

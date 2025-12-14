@@ -1,5 +1,5 @@
-// Google Analytics 4 integration for ndu-portfolio
-// Measurement ID: G-2ZPD8342CY
+// Google Analytics 4 integration for ndu-portfolio-uw (Upwork)
+// Measurement ID: G-2LHZQ26FFS
 
 const DEBUG = import.meta.env.DEV; // Enable debug mode in development
 
@@ -19,7 +19,7 @@ export function initGA() {
   // Load gtag.js script
   const script = document.createElement('script');
   script.async = true;
-  script.src = 'https://www.googletagmanager.com/gtag/js?id=G-2ZPD8342CY';
+  script.src = 'https://www.googletagmanager.com/gtag/js?id=G-2LHZQ26FFS';
   document.head.appendChild(script);
 
   // Initialize dataLayer and gtag function
@@ -30,7 +30,7 @@ export function initGA() {
 
   // Configure GA4
   window.gtag('js', new Date());
-  window.gtag('config', 'G-2ZPD8342CY', {
+  window.gtag('config', 'G-2LHZQ26FFS', {
     send_page_view: false, // We'll handle page views manually for SPA
   });
 

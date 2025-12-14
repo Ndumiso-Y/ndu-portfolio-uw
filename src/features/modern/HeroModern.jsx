@@ -203,56 +203,6 @@ export default function HeroModern() {
                 </div>
               ))}
             </div>
-
-            {/* QR Connect card - Desktop - bottom right */}
-            <div
-              className={`hidden lg:block mt-10 transform transition-all duration-1000 ease-out ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
-              style={{ transitionDelay: '800ms' }}
-            >
-              <div
-                onClick={trackECardClick}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl hover:border-[#41b3bc]/50 hover:shadow-xl hover:shadow-[#41b3bc]/10 hover:scale-[1.02] transition-all duration-200 cursor-pointer max-w-[220px]"
-              >
-                <div className="space-y-2 mb-4">
-                  <p className="text-[#41b3bc] font-bold text-sm uppercase tracking-[0.14em]">Connect</p>
-                  <p className="text-white/50 text-xs leading-relaxed">Scan to open my e-card and save my contact details.</p>
-                </div>
-                <div className="bg-white p-2 rounded-lg">
-                  <img
-                    src={withBase("/assets/QRcodeBusiness.jpg")}
-                    alt="Scan to open Ndumiso's e-card contact details"
-                    className="w-28 h-28 rounded"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* QR Connect card - Mobile/Tablet */}
-          <div
-            className={`lg:hidden flex justify-center order-4 pb-16 mt-10 transform transition-all duration-1000 ease-out ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
-            style={{ transitionDelay: '800ms' }}
-          >
-            <div
-              onClick={trackECardClick}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-xl max-w-sm cursor-pointer"
-            >
-              <div className="space-y-2 mb-4 text-center">
-                <p className="text-[#41b3bc] font-bold text-sm uppercase tracking-[0.14em]">Connect</p>
-                <p className="text-white/50 text-xs leading-relaxed">Scan to open my e-card and save my contact details.</p>
-              </div>
-              <div className="bg-white p-3 rounded-lg flex justify-center">
-                <img
-                  src={withBase("/assets/QRcodeBusiness.jpg")}
-                  alt="Scan to open Ndumiso's e-card contact details"
-                  className="w-32 h-32 rounded"
-                />
-              </div>
-            </div>
           </div>
 
         </div>

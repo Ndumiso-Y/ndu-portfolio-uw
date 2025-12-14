@@ -201,45 +201,6 @@ export default function Hero() {
 
         </div>
 
-        {/* QR Connect Card - bottom right on desktop, below photo on mobile */}
-        <div
-          className={`absolute bottom-8 right-8 md:bottom-12 md:right-12 lg:bottom-16 lg:right-16 hidden lg:block z-30 transform transition-all duration-1000 ease-out ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-          style={{ transitionDelay: '800ms' }}
-        >
-          <div className="bg-white/95 backdrop-blur-md border border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.4)] p-6">
-            <p className="text-center text-xs uppercase tracking-[0.25em] text-slate-500 font-medium mb-4">
-              SCAN ME
-            </p>
-            <div className="w-36 h-36 bg-white">
-              <img
-                src={withBase("/assets/QRcodeBusiness.jpg")}
-                alt="QR Code - Connect with Ndumiso"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* QR card for mobile - below everything */}
-        <div className="lg:hidden flex justify-center mt-12">
-          <div className="bg-white/95 backdrop-blur-md border border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.4)] p-6">
-            <p className="text-center text-xs uppercase tracking-[0.25em] text-slate-500 font-medium mb-4">
-              SCAN ME
-            </p>
-            <div className="w-36 h-36 bg-white">
-              <img
-                src={withBase("/assets/QRcodeBusiness.jpg")}
-                alt="QR Code - Connect with Ndumiso"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </div>
-
         {/* Scroll prompt */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 text-white/40 text-xs uppercase tracking-wider">
           <span>Scroll to explore</span>

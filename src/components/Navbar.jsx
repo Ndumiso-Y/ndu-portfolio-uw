@@ -10,7 +10,6 @@ const links = [
   { href: "#social",   label: "Social Media Management" }, // must match section id
   { href: "#projects", label: "Projects" },
   { href: "#badges",   label: "Badges & Recognition" },
-  { href: "#contact",  label: "Contact" },
 ];
 
 export default function Navbar() {
