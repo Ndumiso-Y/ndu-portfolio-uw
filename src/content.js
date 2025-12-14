@@ -235,12 +235,12 @@ I could guess a letter only once. After I guessed a letter, my programming disab
         copy:
           "Creative direction and visual rollout for the opening event assets.",
         gallery: [
-          "/assets/tvei-flyer-01.jpg",
-          "/assets/tvei-flyer-02.jpg",
-          "/assets/tvei-flyer-03.jpg",
-          "/assets/tvei-flyer-04.jpg",
-          "/assets/tvei-flyer-05.jpg",
-          "/assets/tvei-flyer-06.jpg",
+          "/assets/tvei-flyer-01.webp",
+          "/assets/tvei-flyer-02.webp",
+          "/assets/tvei-flyer-03.webp",
+          "/assets/tvei-flyer-04.webp",
+          "/assets/tvei-flyer-05.webp",
+          "/assets/tvei-flyer-06.webp",
         ],
         galleryTitle: "TVEI / Launch Flyers",
       },

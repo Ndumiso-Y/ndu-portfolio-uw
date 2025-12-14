@@ -162,9 +162,11 @@ export default function HeroModern() {
               style={{ transitionDelay: '400ms' }}
             >
               <img
-                src={withBase("/assets/NdumisoNobackground.png")}
+                src={withBase("/assets/NdumisoNobackground.webp")}
                 alt="Ndumiso Yedwa - Founder of Embark Digitals"
                 className="h-[70vh] md:h-[80vh] lg:h-[90vh] xl:h-[95vh] w-auto object-contain object-bottom"
+                width="832"
+                height="1248"
                 style={{
                   filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.5))'
                 }}

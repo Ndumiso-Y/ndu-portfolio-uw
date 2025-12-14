@@ -155,9 +155,11 @@ export default function Hero() {
               style={{ transitionDelay: '400ms' }}
             >
               <img
-                src={withBase("/assets/NdumisoNobackground.png")}
+                src={withBase("/assets/NdumisoNobackground.webp")}
                 alt="Ndumiso Yedwa - Founder of Embark Digitals"
                 className="h-[60vh] md:h-[70vh] lg:h-[85vh] w-auto object-contain object-bottom"
+                width="832"
+                height="1248"
                 style={{
                   filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.5))'
                 }}
