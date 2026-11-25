@@ -58,6 +58,203 @@ body {
   background: var(--glass-hover);
 }
 
+/* ================ HERO REDESIGN (Gate 1) ================ */
+.hero-display {
+  font-family: 'Montserrat', 'Inter', system-ui, sans-serif;
+  font-weight: 800;
+}
+
+/* Light frosted glass: absorbs the colour behind it (off-white or teal) */
+.hero-glass-light {
+  background: rgba(255, 255, 255, 0.58);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 12px 32px -18px rgba(10, 40, 46, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* ---- Final hero (2026-11-17 reference pack) ---- */
+/* Soft teal field from the right edge; fades to the off-white canvas */
+.hero-teal-field {
+  background:
+    radial-gradient(115% 95% at 104% 28%, #1b818c 0%, #3a9fab 26%, rgba(86, 178, 188, 0.66) 46%, rgba(243, 243, 241, 0) 70%);
+}
+.hero-teal-field--stage {
+  background:
+    radial-gradient(120% 80% at 100% 38%, #1b818c 0%, #3fa3ae 30%, rgba(98, 188, 196, 0.5) 52%, rgba(243, 243, 241, 0) 76%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 78%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 78%, transparent 100%);
+}
+/* Restrained technical grid, only visible inside the teal field */
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(48% 52% at 88% 32%, #000 0%, transparent 78%);
+  mask-image: radial-gradient(48% 52% at 88% 32%, #000 0%, transparent 78%);
+}
+/* Real portrait: bottom dissolves into the mist behind the name */
+.hero-portrait {
+  -webkit-mask-image: linear-gradient(to bottom, #000 62%, rgba(0, 0, 0, 0.55) 77%, transparent 93%);
+  mask-image: linear-gradient(to bottom, #000 62%, rgba(0, 0, 0, 0.55) 77%, transparent 93%);
+}
+/* Thin-outlined glass rectangles around the portrait */
+.hero-glass-block {
+  position: absolute;
+  pointer-events: none;
+  border-radius: clamp(8px, 1.1vw, 16px);
+  border: 1.5px solid rgba(255, 255, 255, 0.82);
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.07) 55%, rgba(255, 255, 255, 0.16));
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 18px 40px -22px rgba(6, 60, 66, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.7), inset 0 0 24px rgba(255, 255, 255, 0.12);
+}
+.hero-glass-block--front {
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.04) 60%);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+/* Signature perspective lettering (decorative, aria-hidden) */
+.hero-name {
+  position: relative;
+  font-family: 'Montserrat', 'Inter', system-ui, sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.035em;
+  line-height: 0.8;
+  text-align: center;
+  perspective: 5em;
+  perspective-origin: 50% 0%;
+  pointer-events: none;
+  user-select: none;
+}
+.hero-name__plane {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: rotateX(58deg) scaleX(1.22);
+  transform-origin: 50% 100%;
+  margin-top: -0.62em;
+}
+.hero-name__first {
+  font-size: 0.5em;
+  color: #121417;
+  text-shadow:
+    0 0.015em 0 #2a2f33, 0 0.03em 0 #23282b, 0 0.045em 0 #1c2023,
+    0 0.06em 0 #15181a, 0 0.12em 0.1em rgba(0, 0, 0, 0.28);
+}
+.hero-name__last {
+  display: block;
+  color: #18929e;
+  text-shadow:
+    0 0.008em 0 #10808b, 0 0.016em 0 #0e7782, 0 0.024em 0 #0c6d77,
+    0 0.032em 0 #0b636c, 0 0.04em 0 #095a62, 0 0.048em 0 #085158,
+    0 0.056em 0 #07484f, 0 0.1em 0.07em rgba(3, 42, 46, 0.35);
+}
+.hero-name__dot { color: #0d6f79; }
+.hero-name__mirror {
+  position: absolute;
+  inset: 0;
+  perspective: 5em;
+  perspective-origin: 50% 0%;
+  transform: scaleY(-1);
+  transform-origin: 50% 100%;
+  opacity: 0.13;
+  -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 38%);
+  mask-image: linear-gradient(to top, #000 0%, transparent 38%);
+}
+.hero-name__mirror .hero-name__first,
+.hero-name__mirror .hero-name__last { text-shadow: none; }
+
+/* ---- Final hero: Gate 3 motion (MOTION_SPEC.md) ----
+   Transform/opacity only. Never over the face or copy: blocks drift 4-8 px.
+   Everything below is switched off under prefers-reduced-motion. */
+.hero-glass-block {
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+@keyframes hero-drift-a { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(6px, -7px, 0); } }
+@keyframes hero-drift-b { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(-7px, 5px, 0); } }
+@keyframes hero-drift-c { 0%, 100% { transform: translate3d(0, 0, 0); } 33% { transform: translate3d(4px, 6px, 0); } 66% { transform: translate3d(-5px, -3px, 0); } }
+
+/* Soft entrance: brief stagger, finished within ~1.1 s; controls stay usable throughout */
+.hero-enter {
+  animation: hero-rise 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(var(--i, 0) * 70ms + 80ms);
+}
+.hero-settle { animation: hero-fade 900ms ease-out 150ms both; }
+.hero-name-enter { animation: hero-name-rise 900ms cubic-bezier(0.2, 0.7, 0.2, 1) 350ms both; }
+@keyframes hero-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes hero-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes hero-name-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+/* One restrained sheen: the skills glass, once after the entrance and again on hover */
+.hero-sheen { overflow: hidden; isolation: isolate; }
+.hero-sheen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.75) 50%, transparent 70%);
+  transform: translateX(-110%);
+  animation: hero-sheen 1600ms ease-out 1300ms 1 both;
+}
+.hero-sheen:hover::after { animation: hero-sheen-again 1400ms ease-out 1 both; }
+@keyframes hero-sheen { to { transform: translateX(110%); } }
+@keyframes hero-sheen-again { from { transform: translateX(-110%); } to { transform: translateX(110%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-glass-block,
+  .hero-enter,
+  .hero-settle,
+  .hero-name-enter,
+  .hero-sheen::after,
+  .hero-sheen:hover::after { animation: none !important; }
+  .hero-glass-block { will-change: auto; }
+  .hero-sheen::after { display: none; }
+}
+
+/* ---- Hero skills ticker: slow continuous loop (two identical lists, track moves -50%) ---- */
+.skills-ticker {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+}
+.skills-ticker__track {
+  display: flex;
+  width: max-content;
+  animation: skills-ticker 60s linear infinite;
+}
+.skills-ticker__list {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding-right: 40px;
+  min-height: 44px;
+}
+.skills-ticker:hover .skills-ticker__track,
+.skills-ticker:focus-within .skills-ticker__track,
+.skills-ticker.is-paused .skills-ticker__track { animation-play-state: paused; }
+@keyframes skills-ticker { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .skills-ticker { overflow-x: auto; }
+  .skills-ticker__track { animation: none !important; }
+  .skills-ticker__list[aria-hidden="true"] { display: none; }
+  .skills-ticker__toggle { display: none; }
+}
+
+/* Dark frosted glass for the nav once it sits over the dark sections */
+.nav-glass-dark {
+  background: rgba(14, 16, 17, 0.72);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 32px -18px rgba(0, 0, 0, 0.6);
+}
+
 /* Card styles */
 .card-modern {
   background: var(--card-bg);
@@ -183,3 +380,67 @@ body {
 .stagger-3 { animation-delay: 0.3s; }
 .stagger-4 { animation-delay: 0.4s; }
 .stagger-5 { animation-delay: 0.5s; }
+
+/* Audio walkthrough seek bar (Learning Journey) */
+.audio-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 24px;
+  background: transparent;
+  cursor: pointer;
+}
+.audio-range::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 9999px;
+  background: linear-gradient(to right, #0e5c66 var(--p, 0%), rgba(14, 92, 102, 0.18) var(--p, 0%));
+}
+.audio-range::-moz-range-track {
+  height: 4px;
+  border-radius: 9999px;
+  background: rgba(14, 92, 102, 0.18);
+}
+.audio-range::-moz-range-progress {
+  height: 4px;
+  border-radius: 9999px;
+  background: #0e5c66;
+}
+.audio-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -5px;
+  border-radius: 9999px;
+  background: #0e5c66;
+  border: 2px solid #fff;
+}
+.audio-range::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  background: #0e5c66;
+  border: 2px solid #fff;
+}
+.audio-range:focus-visible {
+  outline: 2px solid #0e5c66;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Horizontal project row on phones (Learning Journey) */
+.snap-row {
+  scrollbar-width: none;
+}
+.snap-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---- Scroll reveal below the hero (classes added by useScrollReveal; never set without JS) ---- */
+.scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+  transition: opacity 700ms ease-out var(--reveal-delay, 0ms), transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms);
+}
+.scroll-reveal.is-revealed { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+}

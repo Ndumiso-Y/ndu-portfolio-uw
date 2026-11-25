@@ -1,8 +1,6 @@
 import React, { useRef } from 'react'
 import projectsData from '@/content/projects.json'
 import MiniAudioPlayer from '@/components/modern/MiniAudioPlayer'
-import { withBase } from '@/lib/withBase'
-import { AssetImage } from '@/components/ui/AssetImage'
 
 function ProjectCard({ project }) {
   return (
@@ -10,7 +8,7 @@ function ProjectCard({ project }) {
       {/* Thumbnail */}
       {project.thumb && (
         <div className="relative w-full h-48 rounded-xl overflow-hidden group/img">
-          <AssetImage
+          <img
             src={project.thumb}
             alt={project.name}
             className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-110"
@@ -120,7 +118,7 @@ export default function ProjectCarousel() {
                   preload="auto"
                   aria-label="Intro clip from my front-end learning journey series"
                 >
-                  <source src={withBase("/media/learning-journey-intro.mp4")} type="video/mp4" />
+                  <source src="/media/learning-journey-intro.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               </div>
@@ -207,7 +205,7 @@ export default function ProjectCarousel() {
         </div>
       </div>
 
-      <style>{`
+      <style jsx>{`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
         }

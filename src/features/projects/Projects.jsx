@@ -3,8 +3,6 @@ import projectsData from "@/content/projects.json"
 import { Card } from "@/components/ui/Card"
 import { SectionHeading } from "@/components/ui/SectionHeading"
 import { Tag } from "@/components/ui/Tag"
-import { AssetImage } from "@/components/ui/AssetImage"
-import { withBase } from "@/lib/withBase"
 
 function ProjectCard({ project, index }) {
   return (
@@ -15,7 +13,7 @@ function ProjectCard({ project, index }) {
       <Card className="group flex flex-col overflow-hidden p-0 bg-white dark:bg-slate-900/50">
         {project.thumb && (
           <div className="overflow-hidden aspect-[16/10] bg-slate-50 dark:bg-slate-800 relative">
-            <AssetImage
+            <img
               src={project.thumb}
               alt={project.name || "Project"}
               className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-110 group-hover:rotate-1 transition-all duration-700"
@@ -35,7 +33,7 @@ function ProjectCard({ project, index }) {
             <div className="my-3">
               <audio
                 controls
-                src={withBase(project.audio)}
+                src={project.audio}
                 className="w-full max-h-10"
                 preload="none"
                 aria-label={project.audioDesc || `Audio description for ${project.name}`}

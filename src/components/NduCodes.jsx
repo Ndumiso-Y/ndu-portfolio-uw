@@ -1,6 +1,5 @@
 import React from 'react'
 import { content } from '../content'
-import { AssetImage } from './ui/AssetImage'
 
 export default function NduCodes(){
   return (
@@ -13,7 +12,7 @@ export default function NduCodes(){
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
           {content.nduCodes.projects.map((p,i)=>(
             <article key={i} className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-              <AssetImage src={p.screenshot} alt={p.title} loading="lazy" decoding="async"
+              <img src={p.screenshot} alt={p.title} loading="lazy" decoding="async"
                 className="w-full aspect-[16/10] object-cover rounded-lg"/>
               <div className="mt-2 font-semibold">{p.title}</div>
               <p className="text-sm text-slate-600">{p.brief}</p>

@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { content } from "../content";
 import Lightbox from "./Lightbox.jsx";
-import { AssetImage } from "./ui/AssetImage";
 
 function CarouselCard({ item }) {
   const images = Array.isArray(item?.gallery) && item.gallery.length ? item.gallery : [item?.src].filter(Boolean);
@@ -16,7 +15,7 @@ function CarouselCard({ item }) {
     <article className="rounded-xl border border-slate-200 bg-white overflow-hidden hover:shadow-sm">
       {/* Main stage — no cropping */}
       <div className="relative aspect-[16/9] bg-white grid place-items-center">
-        <AssetImage
+        <img
           src={images[idx]}
           alt={item?.title || "TVEI image"}
           className="max-h-full max-w-full object-contain w-full h-full p-2"
@@ -59,7 +58,7 @@ function CarouselCard({ item }) {
                 className={`shrink-0 rounded border ${i === idx ? "border-slate-900" : "border-slate-200"} bg-white p-1`}
                 aria-label={`Go to slide ${i + 1}`}
               >
-                <AssetImage
+                <img
                   src={src}
                   alt={`thumb ${i + 1}`}
                   className="w-16 h-10 object-contain"

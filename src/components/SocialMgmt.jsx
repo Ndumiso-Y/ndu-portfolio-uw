@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { content } from "../content";
 import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { trackSocialProfileClick } from '../lib/analytics';
-import { AssetImage } from './ui/AssetImage';
 
 function PlatformBadge({ type }) {
   const t = (type || "").toLowerCase();
@@ -44,7 +43,7 @@ function Thumb({ src, brand, aspect="16/9" }) {
   return (
     <div className={`relative w-full ${aspectClass} bg-slate-100 overflow-hidden`}>
       {src ? (
-        <AssetImage src={src} alt={brand||""} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <img src={src} alt={brand||""} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
       ) : (
         <div className="absolute inset-0 grid place-items-center text-3xl text-white" style={{ background:"#41b3bc" }}>
           {(brand||"").split(" ").map(w=>w[0]).join("").slice(0,3).toUpperCase() || "—"}
@@ -132,7 +131,7 @@ export default function SocialMgmt() {
                 className="w-12 h-12 overflow-hidden border-2 hover:scale-105 transition-all"
                 style={{ borderColor: brand }}
               >
-                <AssetImage src={s.thumb || content?.socialThumbs?.[s.thumbKey]} alt="" className="w-full h-full object-cover grayscale"/>
+                <img src={s.thumb || content?.socialThumbs?.[s.thumbKey]} alt="" className="w-full h-full object-cover grayscale"/>
               </button>
             ))}
             <button

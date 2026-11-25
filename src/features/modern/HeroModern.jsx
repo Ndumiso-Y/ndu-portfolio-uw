@@ -1,205 +1,311 @@
-import React, { useEffect, useState } from 'react'
-import { withBase } from '@/lib/withBase'
-import { trackGetInTouchClick, trackViewWorkClick, trackECardClick } from '../../lib/analytics'
+import React, { useState } from 'react'
+import {
+  SiReact, SiTailwindcss, SiJavascript, SiHtml5, SiCss3,
+  SiAdobephotoshop, SiAdobeillustrator, SiAdobeindesign, SiCanva, SiClaude
+} from 'react-icons/si'
+import { trackGetInTouchClick, trackViewWorkClick, trackEvent } from '../../lib/analytics'
+import { withBase } from '../../lib/withBase'
+import { UPWORK } from '../../lib/upwork'
+
+// Hero — Gate 1 static build of the owner-approved final reference
+// (Ndumiso_Hero_Approved_Reference_Pack_2026-11-17/references/01_FINAL_HERO_APPROVED.png).
+// Copy follows that pack's COPY_LOCK.md. The portrait is the real photo
+// ("Ndu_Blue Background.png" cut out by scripts/make-hero-cutout.mjs); no generated imagery.
+// No motion at this gate (ED-WEB-001 Gate 3 is separate).
+// Relocated from the previous hero: the QR e-card now sits in Contact; the four section
+// shortcut cards duplicated the nav and were removed; the full skills list stays in About.
+
+const services = [
+  {
+    title: 'Web Design & Development',
+    description: 'I design and build fast, modern websites that look sharp and convert visitors into clients.'
+  },
+  {
+    title: 'Business Software & Dashboards',
+    description: 'Custom apps that bring quotations, records, approvals, tasks and reports into one place.'
+  },
+  {
+    title: 'Branding & Graphics',
+    description: 'Logos, marketing visuals, and digital assets that keep your brand consistent and memorable.'
+  },
+  {
+    title: 'Social & Digital Content',
+    description: 'Social media visuals and simple campaigns that keep your audience engaged and informed.'
+  }
+]
+
+const proofPoints = ['Clean UI & brand consistency', 'Conversion-focused messaging', 'Reliable delivery']
+
+// All 11 skills from About → Skills & Tools, shown as a slow continuous ticker (owner, 17 Nov 2026).
+// Lovable has no brand icon in the icon set, so it gets a plain dot rather than an invented logo.
+const coreSkills = [
+  { name: 'React', Icon: SiReact, color: '#149eca' },
+  { name: 'Tailwind', Icon: SiTailwindcss, color: '#0ea5e9' },
+  { name: 'JavaScript', Icon: SiJavascript, color: '#d9b400' },
+  { name: 'HTML', Icon: SiHtml5, color: '#E34F26' },
+  { name: 'CSS', Icon: SiCss3, color: '#1572B6' },
+  { name: 'Photoshop', Icon: SiAdobephotoshop, color: '#1f7ad6' },
+  { name: 'Illustrator', Icon: SiAdobeillustrator, color: '#e68a00' },
+  { name: 'InDesign', Icon: SiAdobeindesign, color: '#e2335c' },
+  { name: 'Canva', Icon: SiCanva, color: '#00a8b0' },
+  { name: 'Claude Code', Icon: SiClaude, color: '#d97757' },
+  { name: 'Lovable', Icon: null, color: '#e0457b' }
+]
+
+function SkillList({ hidden = false }) {
+  return (
+    <ul className="skills-ticker__list" aria-hidden={hidden || undefined}>
+      {coreSkills.map(({ name, Icon: SkillIcon, color }) => (
+        <li key={name} className="flex items-center gap-2 text-[15px] text-[#26302f] whitespace-nowrap">
+          {SkillIcon
+            ? <SkillIcon className="w-5 h-5 flex-none" style={{ color }} aria-hidden="true" />
+            : <span className="w-2.5 h-2.5 mx-[5px] rounded-full flex-none" style={{ background: color }} aria-hidden="true" />}
+          {name}
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+// Slow news-style ticker. Pauses on hover/focus and with the button (WCAG 2.2.2);
+// with reduced motion it stops and the row can be scrolled by hand instead.
+function SkillsTicker({ className = '' }) {
+  const [paused, setPaused] = useState(false)
+  return (
+    <div className={`flex items-center gap-2 min-w-0 ${className}`}>
+      <div className={`skills-ticker flex-1 min-w-0 ${paused ? 'is-paused' : ''}`}>
+        <div className="skills-ticker__track">
+          <SkillList />
+          <SkillList hidden />
+        </div>
+      </div>
+      <button
+        type="button"
+        onClick={() => setPaused(p => !p)}
+        aria-label={paused ? 'Play the skills ticker' : 'Pause the skills ticker'}
+        className="skills-ticker__toggle flex-none w-11 h-11 rounded-full flex items-center justify-center text-[#26302f] hover:bg-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0e5c66]"
+      >
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          {paused ? <path d="M8 5v14l11-7z" /> : <path d="M7 5h4v14H7zM13 5h4v14h-4z" />}
+        </svg>
+      </button>
+    </div>
+  )
+}
+
+// Glass blocks, positioned in % of the portrait box (measured from the reference).
+// "front" blocks sit over the shoulders only — never the face, copy or controls.
+// Gate 3: each block drifts 4–8 px on its own slow cycle (k = path, s = seconds, o = phase).
+const glassBlocks = [
+  { l: 19, t: 20, w: 13, h: 15, front: false, k: 'a', s: 19, o: -3 },
+  { l: 76, t: 10, w: 29, h: 37, front: false, k: 'b', s: 24, o: -11 },
+  { l: 96, t: 2, w: 11, h: 11, front: false, k: 'c', s: 16, o: -7 },
+  { l: 92, t: 37, w: 19, h: 26, front: false, k: 'a', s: 22, o: -15 },
+  { l: 85, t: 59, w: 9, h: 10, front: true, k: 'c', s: 17, o: -2 },
+  { l: 68, t: 66, w: 20, h: 13, front: true, k: 'b', s: 26, o: -9 }
+]
+
+const icons = {
+  arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
+  send: <path d="M21 3L10 14M21 3l-7 18-4-7-7-4 18-7z" />,
+  building: <path d="M4 21V5l8-2v18M12 8h8v13M4 21h17M7 8h2M7 12h2M7 16h2M15 12h2M15 16h2" />,
+  pin: <path d="M12 21s-7-6.2-7-11.5A7 7 0 0112 2.5a7 7 0 017 7C19 14.8 12 21 12 21zm0-9a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />,
+  globe: <path d="M12 21a9 9 0 100-18 9 9 0 000 18zM3.6 9h16.8M3.6 15h16.8M12 3a14 14 0 010 18M12 3a14 14 0 000 18" />,
+  external: <path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5" />
+}
+
+function Icon({ name, className = 'w-5 h-5' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      {icons[name]}
+    </svg>
+  )
+}
+
+const blockStyle = b => ({
+  left: `${b.l}%`, top: `${b.t}%`, width: `${b.w}%`, height: `${b.h}%`,
+  animationName: `hero-drift-${b.k}`, animationDuration: `${b.s}s`, animationDelay: `${b.o}s`
+})
+
+// Portrait with glass blocks behind and in front of the shoulders.
+function PortraitStage({ className = '', eager = true }) {
+  return (
+    <div className={className}>
+      {glassBlocks.filter(b => !b.front).map((b, i) => (
+        <span key={`b${i}`} aria-hidden="true" className="hero-glass-block"
+          style={blockStyle(b)} />
+      ))}
+      <img
+        src={withBase('/assets/ndu-hero-cutout.webp')}
+        alt="Ndumiso Yedwa, founder of Embark Digitals"
+        width="1080"
+        height="1080"
+        className="hero-portrait relative w-full h-full object-contain object-bottom"
+        loading={eager ? 'eager' : 'lazy'}
+        fetchpriority={eager ? 'high' : undefined}
+      />
+      {glassBlocks.filter(b => b.front).map((b, i) => (
+        <span key={`f${i}`} aria-hidden="true" className="hero-glass-block hero-glass-block--front"
+          style={blockStyle(b)} />
+      ))}
+    </div>
+  )
+}
+
+// Signature perspective lettering. Decorative: the name is in the h1 for assistive tech.
+function PerspectiveName({ className = '' }) {
+  return (
+    <div className={`hero-name ${className}`} aria-hidden="true">
+      <div className="hero-name__plane">
+        <span className="hero-name__first">Ndumiso</span>
+        <span className="hero-name__last">Yedwa<span className="hero-name__dot">.</span></span>
+      </div>
+      {/* Low-key floor reflection: the same plane mirrored about its bottom edge */}
+      <div className="hero-name__mirror">
+        <div className="hero-name__plane">
+          <span className="hero-name__first">Ndumiso</span>
+          <span className="hero-name__last">Yedwa<span className="hero-name__dot">.</span></span>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function HeroModern() {
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 200)
-    return () => clearTimeout(timer)
-  }, [])
-
-  const services = [
-    {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-      ),
-      title: "WEB DESIGN & DEVELOPMENT",
-      description: "I design and build fast, modern websites that look sharp and convert visitors into clients."
-    },
-    {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-        </svg>
-      ),
-      title: "BRANDING & GRAPHICS",
-      description: "Logos, marketing visuals, and digital assets that keep your brand consistent and memorable."
-    },
-    {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-        </svg>
-      ),
-      title: "SOCIAL & DIGITAL CONTENT",
-      description: "Social media visuals and simple campaigns that keep your audience engaged and informed."
-    }
-  ]
 
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen bg-[#1a1a1a] overflow-hidden"
-      aria-label="Hero section"
-    >
-      {/* Subtle grid texture */}
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)',
-          backgroundSize: '60px 60px'
-        }}
-        aria-hidden="true"
-      />
+    <section id="hero" aria-label="Hero section" className="relative bg-[#f3f3f1] text-[#121417] overflow-hidden">
+      <div className="relative lg:min-h-[clamp(760px,100svh,1040px)] flex flex-col">
+        {/* Background (desktop): soft teal field from the right + restrained technical grid */}
+        <div className="hidden lg:block absolute inset-0 hero-teal-field" aria-hidden="true" />
+        <div className="hidden lg:block absolute inset-0 hero-grid" aria-hidden="true" />
 
-      {/* Teal radial glow behind portrait */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-20 pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(65,179,188,0.3) 0%, transparent 70%)',
-        }}
-        aria-hidden="true"
-      />
+        {/* Portrait (desktop) */}
+        <PortraitStage className="hero-settle hidden lg:block absolute z-[1] left-[64%] -translate-x-1/2 bottom-[clamp(120px,10vw,170px)] w-[min(52vw,calc(max(100svh,760px)-230px),800px)] aspect-square pointer-events-none" />
 
-      {/* Main container */}
-      <div className="relative min-h-screen w-full px-6 md:px-8 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-screen gap-0 items-center">
+        <div className="relative z-[2] w-full max-w-[1520px] mx-auto px-5 sm:px-8 lg:px-[clamp(32px,5vw,88px)] pt-[100px] lg:pt-[clamp(120px,15vh,156px)] flex-1 flex flex-col">
+          {/* Copy */}
+          <div className="lg:max-w-[54%]">
+            <p style={{ '--i': 0 }} className="hero-enter flex items-start sm:items-center gap-3 sm:gap-4 text-[12px] sm:text-[13px] xl:text-[14px] font-bold tracking-[0.2em] sm:tracking-[0.24em] uppercase text-[#1d2a2e]">
+              <span className="block w-9 xl:w-12 h-[4px] mt-[6px] sm:mt-0 bg-[#1c8c97] rounded-full flex-none" aria-hidden="true" />
+              <span>Websites · Business Software<span className="xl:hidden"><br /></span><span className="hidden xl:inline"> · </span>AI-Assisted Development</span>
+            </p>
 
-          {/* LEFT COLUMN: Main message */}
-          <div className="lg:col-span-4 flex flex-col justify-center z-20 pt-32 pb-12 lg:py-0 lg:pr-10">
-            <div
-              className={`space-y-5 transform transition-all duration-700 ease-out ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-            >
-              {/* Status pill */}
-              <div className="inline-flex items-center px-5 py-2 text-[11px] tracking-[0.15em] uppercase rounded-full border border-white/10 bg-white/5 text-white/60 w-fit">
-                Web Developer
-              </div>
+            <h1 style={{ '--i': 1 }} className="hero-enter hero-display mt-4 lg:mt-5 uppercase leading-[0.95] tracking-[-0.03em] text-[clamp(40px,11.4vw,64px)] lg:text-[clamp(42px,4.3vw,80px)]">
+              <span className="sr-only">Ndumiso Yedwa: </span>
+              <span className="block lg:whitespace-nowrap text-[#121417]">Websites &amp;</span>{' '}
+              <span className="block lg:whitespace-nowrap text-[#0e6d78]">Business Software</span>
+            </h1>
 
-              {/* Primary heading - BIGGER */}
-              <h1 className="text-7xl md:text-8xl lg:text-[6rem] xl:text-[7rem] font-bold text-white leading-[0.88] tracking-tighter">
-                NDUMISO<br />YEDWA
-              </h1>
+            <p className="hero-enter hero-display mt-3 lg:mt-4 text-[20px] sm:text-[22px] lg:text-[clamp(20px,1.9vw,32px)] leading-tight tracking-[-0.01em] text-[#121417]" style={{ fontWeight: 700, '--i': 2 }}>
+              Custom Apps, Dashboards &amp; Business&nbsp;Systems
+            </p>
+            <p style={{ '--i': 3 }} className="hero-enter mt-2.5 max-w-[38ch] sm:max-w-[44ch] text-[16px] sm:text-[18px] lg:text-[clamp(17px,1.45vw,23px)] leading-snug text-[#2b3336]">
+              I build the websites your customers see and the software that helps you run your business.
+            </p>
 
-              {/* Role / Subheading - BIGGER */}
-              <p className="text-xl md:text-2xl lg:text-2xl text-white/70 font-semibold">
-                Web Designer & Front-End Developer
-              </p>
+            <div style={{ '--i': 4 }} className="hero-enter mt-6 lg:mt-7 flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <a
+                href="#websites"
+                onClick={trackViewWorkClick}
+                className="group inline-flex items-center justify-center gap-3 min-h-[52px] px-9 rounded-full bg-gradient-to-b from-[#16808b] to-[#0b5a63] text-white text-[17px] font-semibold shadow-[0_12px_26px_-12px_rgba(14,92,102,0.85)] hover:from-[#13737d] hover:to-[#094d55] hover:-translate-y-0.5 transition motion-reduce:transition-none motion-reduce:hover:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#0e5c66] focus-visible:ring-offset-[#f3f3f1]"
+              >
+                View Work
+                <Icon name="arrow" className="w-5 h-5 transition-transform group-hover:translate-x-1 motion-reduce:transition-none" />
+              </a>
+              <a
+                href="#contact"
+                onClick={trackGetInTouchClick}
+                className="inline-flex items-center justify-center gap-3 min-h-[52px] px-8 rounded-full border-[1.5px] border-[#121417] bg-white/40 text-[#121417] text-[17px] font-semibold hover:bg-white hover:-translate-y-0.5 transition motion-reduce:transition-none motion-reduce:hover:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#0e5c66] focus-visible:ring-offset-[#f3f3f1]"
+              >
+                <Icon name="send" className="w-5 h-5" />
+                {UPWORK ? 'Work With Me' : 'Get in Touch'}
+              </a>
+            </div>
 
-              {/* Body copy - limit to 32-36ch */}
-              <p className="text-base md:text-lg text-white/60 max-w-[34ch] leading-relaxed">
-                Founder of Embark Digitals — building fast, modern websites, branding, and digital assets.
-              </p>
-
-              {/* CTA Buttons - BIGGER */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <ul style={{ '--i': 5 }} className="hero-enter mt-5 flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-2 text-[13px] sm:text-[15px] text-[#2b3336]">
+              <li>
+                {UPWORK ? (
+                  // Upwork build: company name as text only (no link to the agency site)
+                  <span className="inline-flex items-center gap-2 min-h-[44px] -my-[11px] text-[#2b3336]">
+                    <Icon name="building" className="w-[18px] h-[18px] text-[#3b4448]" />
+                    Embark Digitals
+                  </span>
+                ) : (
                 <a
-                  href="#websites"
-                  onClick={trackViewWorkClick}
-                  className="group inline-flex items-center justify-center gap-2 px-10 py-4 bg-[#41b3bc] text-white font-bold text-sm uppercase tracking-[0.1em] rounded-lg hover:bg-[#4ec5cf] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#41b3bc]/20 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#41b3bc] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]"
+                  href="https://www.embarkdigitals.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent('embark_digitals_click', { link_location: 'hero' })}
+                  className="group inline-flex items-center gap-2 min-h-[44px] -my-[11px] rounded-full text-[#2b3336] underline decoration-[#121417]/25 underline-offset-4 hover:text-[#0e5c66] hover:decoration-[#0e5c66] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0e5c66]"
                 >
-                  View work
-                  <svg
-                    className="w-4 h-4 transform transition-transform duration-200 group-hover:translate-x-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
+                  <Icon name="building" className="w-[18px] h-[18px] text-[#3b4448] group-hover:text-[#0e5c66]" />
+                  Embark Digitals
+                  <Icon name="external" className="w-3.5 h-3.5 opacity-60" />
+                  <span className="sr-only">(opens in a new tab)</span>
                 </a>
-              </div>
-
-              {/* Bullets - BIGGER */}
-              <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#41b3bc] flex-shrink-0"></div>
-                  <div className="text-base text-white/60">Clean UI & brand consistency</div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#41b3bc] flex-shrink-0"></div>
-                  <div className="text-base text-white/60">Conversion-focused messaging</div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#41b3bc] flex-shrink-0"></div>
-                  <div className="text-base text-white/60">Reliable delivery</div>
-                </div>
-              </div>
-
-              {/* Scroll prompt */}
-              <div className="hidden lg:flex items-center gap-2 text-white/30 text-[10px] uppercase tracking-[0.12em] pt-12 mt-2">
-                <span>Scroll to explore</span>
-                <svg className="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
-              </div>
-            </div>
+                )}
+              </li>
+            </ul>
           </div>
 
-          {/* MIDDLE COLUMN: Portrait - 1.5X BIGGER */}
-          <div className="lg:col-span-4 relative flex items-end justify-start order-3 lg:order-2 lg:pl-0">
-            <div
-              className={`relative z-10 flex items-end justify-center transform transition-all duration-1000 ease-out ${
-                isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-              }`}
-              style={{ transitionDelay: '400ms' }}
-            >
-              <img
-                src={withBase("/assets/NdumisoNobackground.webp")}
-                alt="Ndumiso Yedwa - Founder of Embark Digitals"
-                className="h-[70vh] md:h-[80vh] lg:h-[90vh] xl:h-[95vh] w-auto object-contain object-bottom"
-                width="832"
-                height="1248"
-                style={{
-                  filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.5))'
-                }}
-                loading="eager"
-              />
-            </div>
-
+          {/* Portrait stage (phone / tablet): composed separately, not a scaled desktop */}
+          <div className="lg:hidden relative mt-8 -mx-5 sm:-mx-8 overflow-x-clip">
+            <div className="absolute inset-0 hero-teal-field hero-teal-field--stage" aria-hidden="true" />
+            <PortraitStage className="hero-settle relative mx-auto w-[86%] max-w-[560px] aspect-square" />
+            <PerspectiveName className="hero-name-enter relative -mt-[19%] sm:-mt-[15%] px-3 text-[clamp(60px,19vw,140px)]" />
           </div>
 
-          {/* RIGHT COLUMN: Service pillars - BIGGER */}
-          <div className="lg:col-span-4 flex flex-col justify-center self-center order-2 lg:order-3 z-20 lg:pl-2 lg:pr-0 relative">
-            <div
-              className={`space-y-8 transform transition-all duration-1000 ease-out ${
-                isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
-              }`}
-              style={{ transitionDelay: '600ms' }}
+          {/* Perspective name (desktop) */}
+          <PerspectiveName className="hero-name-enter hidden lg:block relative z-[2] mt-auto -mr-[3vw] pl-[7vw] text-[clamp(120px,16vw,280px)]" />
+
+          {/* Core skills — desktop glass strip */}
+          <div className="hero-sheen hidden lg:flex relative mb-[clamp(20px,3vh,32px)] mt-1 hero-glass-light rounded-full pl-[clamp(20px,2.4vw,36px)] pr-2 py-1.5 items-center gap-[clamp(12px,1.6vw,24px)]">
+            <a href="#skills" className="font-semibold italic text-[clamp(16px,1.35vw,20px)] whitespace-nowrap text-[#121417] min-h-[44px] flex items-center hover:text-[#0e5c66] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0e5c66] rounded-full">Core Skills &amp; Tools</a>
+            <span className="w-px h-8 bg-[#121417]/15 flex-none" aria-hidden="true" />
+            <SkillsTicker className="flex-1" />
+          </div>
+
+          {/* Core skills — phone / tablet: link to the full list in About + the same ticker */}
+          <div className="hero-sheen lg:hidden relative mt-4 mb-8 hero-glass-light rounded-[28px] px-4 pt-2 pb-2">
+            <a
+              href="#skills"
+              className="min-h-[48px] px-3 flex items-center justify-center gap-4 font-semibold italic text-[18px] text-[#121417] rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0e5c66]"
             >
-              {services.map((service, index) => (
-                <div
-                  key={index}
-                  className="group flex gap-4 items-start p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:border-[#41b3bc]/30 hover:bg-white/[0.04] hover:scale-[1.02] hover:shadow-lg hover:shadow-[#41b3bc]/5 transition-all duration-200 cursor-pointer"
-                >
-                  {/* Icon */}
-                  <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-lg border border-white/10 bg-white/5 text-[#41b3bc] group-hover:border-[#41b3bc]/50 group-hover:bg-[#41b3bc]/10 transition-all duration-200">
-                    {service.icon}
-                  </div>
-                  {/* Content */}
-                  <div className="flex-1 space-y-1.5">
-                    <h3 className="text-[#41b3bc] font-bold text-xs uppercase tracking-[0.12em] leading-tight">
-                      {service.title}
-                    </h3>
-                    <p className="text-white/60 text-sm leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
-                </div>
+              Core Skills &amp; Tools
+              <Icon name="arrow" className="w-5 h-5 not-italic" />
+            </a>
+            <SkillsTicker className="border-t border-[#121417]/10 pt-1" />
+          </div>
+        </div>
+      </div>
+
+      {/* ===== What I do (existing hero copy, kept below the first screen) ===== */}
+      <div className="relative bg-[#f3f3f1] border-t border-[#121417]/10">
+        <div className="max-w-[1520px] mx-auto px-5 sm:px-8 lg:px-[clamp(32px,5vw,88px)] py-14 lg:py-20 grid gap-10 lg:grid-cols-[1fr_2.4fr] lg:gap-16">
+          <div>
+            <p className="flex items-center gap-4 text-[13px] font-semibold tracking-[0.22em] uppercase text-[#1d2a2e]">
+              <span className="block w-10 h-[3px] bg-[#41b3bc] rounded-full" aria-hidden="true" />
+              What I do
+            </p>
+            <ul className="mt-6 space-y-2.5 text-[16px] text-[#3b4448]">
+              {proofPoints.map(p => (
+                <li key={p} className="flex items-center gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#41b3bc] flex-none" aria-hidden="true" />
+                  {p}
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
-
+          <ol className="grid gap-8 sm:grid-cols-2 xl:grid-cols-4 sm:gap-x-8 sm:gap-y-10">
+            {services.map((s, i) => (
+              <li key={s.title} className="border-t-2 border-[#121417] pt-5">
+                <span className="hero-display text-[#0e5c66] text-[28px]">0{i + 1}</span>
+                <h2 className="mt-2 text-[15px] font-bold uppercase tracking-[0.08em] text-[#121417]">{s.title}</h2>
+                <p className="mt-2 text-[16px] leading-relaxed text-[#3b4448]">{s.description}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>

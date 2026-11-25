@@ -1,6 +1,5 @@
 // src/components/Hero.jsx
 import React, { useEffect, useState } from "react";
-import { withBase } from "../lib/withBase";
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
@@ -95,11 +94,17 @@ export default function Hero() {
                 Founder of Embark Digitals — building fast, modern websites, branding, and digital assets.
               </p>
 
-              {/* CTA Button */}
+              {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <a
+                  href="#contact"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-[#41b3bc] text-white font-semibold text-sm uppercase tracking-wider rounded hover:bg-[#34919a] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#41b3bc] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]"
+                >
+                  Get in Touch
+                </a>
+                <a
                   href="#websites"
-                  className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#41b3bc] text-white font-semibold text-sm uppercase tracking-wider rounded hover:bg-[#34919a] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#41b3bc] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]"
+                  className="group inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white/80 font-medium text-sm uppercase tracking-wider rounded hover:border-[#41b3bc] hover:text-[#41b3bc] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
                 >
                   View Work
                   <svg
@@ -149,16 +154,31 @@ export default function Hero() {
               style={{ transitionDelay: '400ms' }}
             >
               <img
-                src={withBase("/assets/NdumisoNobackground.webp")}
+                src="/assets/NdumisoNobackground.png"
                 alt="Ndumiso Yedwa - Founder of Embark Digitals"
                 className="h-[60vh] md:h-[70vh] lg:h-[85vh] w-auto object-contain object-bottom"
-                width="832"
-                height="1248"
                 style={{
                   filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.5))'
                 }}
                 loading="eager"
               />
+            </div>
+
+            {/* QR Connect card - Desktop */}
+            <div
+              className={`hidden lg:block absolute bottom-8 right-0 transform transition-all duration-1000 ease-out ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+              style={{ transitionDelay: '800ms' }}
+            >
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded">
+                <p className="text-[#41b3bc] font-bold text-xs uppercase tracking-wider mb-3 text-center">Connect</p>
+                <img
+                  src="/assets/QRcodeBusiness.jpg"
+                  alt="QR Code to connect with Ndumiso"
+                  className="w-24 h-24 rounded"
+                />
+              </div>
             </div>
           </div>
 
@@ -186,6 +206,23 @@ export default function Hero() {
                   </p>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* QR Connect card - Mobile/Tablet */}
+          <div
+            className={`lg:hidden flex justify-center order-4 pb-12 transform transition-all duration-1000 ease-out ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+            style={{ transitionDelay: '800ms' }}
+          >
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded">
+              <p className="text-[#41b3bc] font-bold text-xs uppercase tracking-wider mb-3 text-center">Connect</p>
+              <img
+                src="/assets/QRcodeBusiness.jpg"
+                alt="QR Code to connect with Ndumiso"
+                className="w-24 h-24 rounded"
+              />
             </div>
           </div>
 

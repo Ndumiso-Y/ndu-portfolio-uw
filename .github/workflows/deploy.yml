@@ -20,10 +20,11 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      - run: npm run build -- --mode gh
+      # Upwork/Fiverr version: same site as ndumiso-y.github.io, no contact details
+      - run: npm run build:upwork-gh
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: dist-upwork
   deploy:
     needs: build
     runs-on: ubuntu-latest

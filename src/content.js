@@ -1,5 +1,4 @@
 // src/content.js
-
 export const content = {
   // ===== THEME =====
   brandColor: "#41b3bc",
@@ -40,7 +39,7 @@ export const content = {
     title: "Web Designer & Front-End Developer",
     bio:
       "Founder of Embark Digitals. I design and build fast, modern websites and brand assets for SMEs—combining clean UI, conversion-focused messaging, and reliable delivery.",
-    headshot: "/assets/ndu-portrait.jpg",
+    headshot: "/assets/ndu-headshot.jpg",
     skills: [
       { name: "HTML", description: "Semantic markup and modern HTML5 features" },
       { name: "CSS", description: "Advanced styling, animations, and responsive design" },
@@ -63,7 +62,7 @@ export const content = {
       brief:
         "Personal brand site for Dr. Benzi — clear messaging, modern UI, and fast performance.",
       thumb: "/assets/benzi-shot.jpg",
-      url: "https://ndumiso-y.github.io/Dr--Benzi--Nkabinde/",
+      url: import.meta.env.VITE_UPWORK ? "" : "https://ndumiso-y.github.io/Dr--Benzi--Nkabinde/",
       repo: "",
     },
     {
@@ -95,7 +94,7 @@ export const content = {
       brief:
         "Agency site for Embark Digitals — services, case studies, and contact.",
       thumb: "/assets/embark-shot.jpg",
-      url: "https://www.embarkdigitals.com",
+      url: import.meta.env.VITE_UPWORK ? "" : "https://www.embarkdigitals.com",
       repo: "",
     },
   ],
@@ -108,7 +107,19 @@ export const content = {
       year: "2025",
       cover: "/assets/filament-ppt-thumb.jpg",
       note: "Clean, modern wordmark focusing on clarity and scalability.",
-      download: "/assets/filament-ppt.pdf",
+      // View-only: PDF pages rendered as images; the PDF itself is not published (owner, 17 Nov 2026)
+      slides: [
+        "/assets/slides/filament-01.webp",
+        "/assets/slides/filament-02.webp",
+        "/assets/slides/filament-03.webp",
+        "/assets/slides/filament-04.webp",
+        "/assets/slides/filament-05.webp",
+        "/assets/slides/filament-06.webp",
+        "/assets/slides/filament-07.webp",
+        "/assets/slides/filament-08.webp",
+        "/assets/slides/filament-09.webp",
+        "/assets/slides/filament-10.webp",
+      ],
     },
     {
       name: "Liaisons Logo",
@@ -116,7 +127,18 @@ export const content = {
       year: "2025",
       cover: "/assets/liaisons-ppt-thumb.jpg",
       note: "Refined mark emphasizing connection and trust.",
-      download: "/assets/liaisons-ppt.pdf",
+      slides: [
+        "/assets/slides/liaisons-01.webp",
+        "/assets/slides/liaisons-02.webp",
+        "/assets/slides/liaisons-03.webp",
+        "/assets/slides/liaisons-04.webp",
+        "/assets/slides/liaisons-05.webp",
+        "/assets/slides/liaisons-06.webp",
+        "/assets/slides/liaisons-07.webp",
+        "/assets/slides/liaisons-08.webp",
+        "/assets/slides/liaisons-09.webp",
+        "/assets/slides/liaisons-10.webp",
+      ],
     },
     {
       name: "VLC Brand Brief",
@@ -124,7 +146,18 @@ export const content = {
       year: "2025",
       cover: "/assets/vlc-brief-cover.jpg", // ensure this exists
       note: "Brand brief with logo usage, color, and type.",
-      download: "/assets/vlc-brand-brief.pdf",
+      slides: [
+        "/assets/slides/vlc-brief-01.webp",
+        "/assets/slides/vlc-brief-02.webp",
+        "/assets/slides/vlc-brief-03.webp",
+        "/assets/slides/vlc-brief-04.webp",
+        "/assets/slides/vlc-brief-05.webp",
+        "/assets/slides/vlc-brief-06.webp",
+        "/assets/slides/vlc-brief-07.webp",
+        "/assets/slides/vlc-brief-08.webp",
+        "/assets/slides/vlc-brief-09.webp",
+        "/assets/slides/vlc-brief-10.webp",
+      ],
     },
   ],
 
@@ -133,7 +166,7 @@ export const content = {
     {
       name: "01 — Personal Profile Page",
       thumb: "/assets/p1-thumb.jpg",
-      url: "https://ndumiso-y.github.io/Project-1--Personal-Profile-Page/",
+      url: import.meta.env.VITE_UPWORK ? "" : "https://ndumiso-y.github.io/Project-1--Personal-Profile-Page/",
       audio: "/assets/p1.mp3",
       audioDesc: "What this project is about",
       desc:
@@ -144,7 +177,7 @@ I also practiced using GitHub, an important tool used by millions of developers 
     {
       name: "02 — Mobile-first Layout",
       thumb: "/assets/p2-thumb.jpg",
-      url: "https://ndumiso-y.github.io/Project2--MobileFirstResponsiveLayout/",
+      url: import.meta.env.VITE_UPWORK ? "" : "https://ndumiso-y.github.io/Project2--MobileFirstResponsiveLayout/",
       audio: "/assets/p2.mp3",
       audioDesc: "Mobile-first responsive layout",
       // exact preview ends after “…large screen sizes.”
@@ -160,7 +193,7 @@ To complete each part of this project, I used ONLY the concepts and techniques l
     {
       name: "03 — Interactive Registration Form",
       thumb: "/assets/p3-thumb.jpg",
-      url: "https://ndumiso-y.github.io/Project-3/",
+      url: import.meta.env.VITE_UPWORK ? "" : "https://ndumiso-y.github.io/Project-3/",
       audio: "/assets/p3.mp3",
       audioDesc: "Responsive form & inputs",
       desc:
@@ -171,7 +204,7 @@ To complete each part of this project, I used ONLY the concepts and techniques l
     {
       name: "04 — Web Style Guide (Sass)",
       thumb: "/assets/p4-thumb.jpg",
-      url: "https://ndumiso-y.github.io/Project4---Web/",
+      url: import.meta.env.VITE_UPWORK ? "" : "https://ndumiso-y.github.io/Project4---Web/",
       audio: "/assets/p4.mp3",
       audioDesc: "Sass variables & partials",
       desc:
@@ -180,7 +213,7 @@ To complete each part of this project, I used ONLY the concepts and techniques l
     {
       name: "05 — Photo Gallery",
       thumb: "/assets/p5-thumb.jpg",
-      url: "https://ndumiso-y.github.io/Project5--photogallery/",
+      url: import.meta.env.VITE_UPWORK ? "" : "https://ndumiso-y.github.io/Project5--photogallery/",
       audio: "/assets/p5.mp3",
       audioDesc: "JS lightbox & search",
       desc:
@@ -189,7 +222,7 @@ To complete each part of this project, I used ONLY the concepts and techniques l
     {
       name: "06 — Game Show App",
       thumb: "/assets/p6-thumb.jpg",
-      url: "https://ndumiso-y.github.io/Project6--GameShowApp/",
+      url: import.meta.env.VITE_UPWORK ? "" : "https://ndumiso-y.github.io/Project6--GameShowApp/",
       audio: "/assets/p6.mp3",
       audioDesc: "Word guessing game",
       // Preview ends EXACTLY after “random phrase.”
@@ -209,7 +242,7 @@ I could guess a letter only once. After I guessed a letter, my programming disab
     {
       name: "07 — Web App Dashboard",
       thumb: "/assets/p7-thumb.jpg",
-      url: "https://ndumiso-y.github.io/https---github.com-Ndumiso-Y-Project7--WebAppDashBoard/",
+      url: import.meta.env.VITE_UPWORK ? "" : "https://ndumiso-y.github.io/https---github.com-Ndumiso-Y-Project7--WebAppDashBoard/",
       audio: "/assets/p7.mp3",
       audioDesc: "Charts & forms",
       desc:
@@ -218,7 +251,7 @@ I could guess a letter only once. After I guessed a letter, my programming disab
     {
       name: "08 — API Employee Directory",
       thumb: "/assets/p8-thumb.jpg",
-      url: "https://ndumiso-y.github.io/Project-8--API--Employee---Directory/",
+      url: import.meta.env.VITE_UPWORK ? "" : "https://ndumiso-y.github.io/Project-8--API--Employee---Directory/",
       audio: "/assets/p8.mp3",
       audioDesc: "Fetch API & modals",
       desc:
@@ -235,12 +268,12 @@ I could guess a letter only once. After I guessed a letter, my programming disab
         copy:
           "Creative direction and visual rollout for the opening event assets.",
         gallery: [
-          "/assets/tvei-flyer-01.webp",
-          "/assets/tvei-flyer-02.webp",
-          "/assets/tvei-flyer-03.webp",
-          "/assets/tvei-flyer-04.webp",
-          "/assets/tvei-flyer-05.webp",
-          "/assets/tvei-flyer-06.webp",
+          "/assets/tvei-flyer-01.jpg",
+          "/assets/tvei-flyer-02.jpg",
+          "/assets/tvei-flyer-03.jpg",
+          "/assets/tvei-flyer-04.jpg",
+          "/assets/tvei-flyer-05.jpg",
+          "/assets/tvei-flyer-06.jpg",
         ],
         galleryTitle: "TVEI / Launch Flyers",
       },
@@ -272,6 +305,19 @@ I could guess a letter only once. After I guessed a letter, my programming disab
   },
   social: [
     {
+      brand: "Prime Specs",
+      desc:
+        "Embark Digitals runs the Prime Specs ZA Facebook page — branded posts on eye care, eyewear and WhatsApp bookings for the Rustenburg optometrist, alongside the website we built.",
+      platforms: ["Facebook"],
+      links: [
+        {
+          type: "facebook",
+          url: "https://www.facebook.com/profile.php?id=61594838014235",
+        },
+      ],
+      thumb: "/assets/primespecs-social.webp"
+    },
+    {
       brand: "The Village Economy Indaba",
       desc:
         "Embark Digitals manages The Village Economy Indaba’s Facebook and LinkedIn presence — creating event-driven content and growing a community around entrepreneurship.",
@@ -298,7 +344,7 @@ I could guess a letter only once. After I guessed a letter, my programming disab
           type: "facebook",
           url: "https://www.facebook.com/profile.php?id=61578253415232",
         },
-        { type: "instagram", url: "https://www.instagram.com/your-easy-docs-handle" },
+        ...(import.meta.env.VITE_UPWORK ? [] : [{ type: "instagram", url: "https://www.instagram.com/your-easy-docs-handle" }]),
       ],
       thumb: "/assets/easy-docs-social.jpg"
     },
@@ -344,7 +390,7 @@ I could guess a letter only once. After I guessed a letter, my programming disab
     {
       key: "treehouse",
       name: "Treehouse – Awarded to study Front-End Web Dev",
-      post: "https://www.linkedin.com/posts/treehouse-island-inc-_treehouse-is-delighted-to-showcase-the-seven-activity-7224036065089568769-WYI9?utm_source=share&utm_medium=member_desktop&rcm=ACoAAA8QhccB0R82FWW4D7H_Xjk0eGCD2T6BvcM",
+      post: import.meta.env.VITE_UPWORK ? "" : "https://www.linkedin.com/posts/treehouse-island-inc-_treehouse-is-delighted-to-showcase-the-seven-activity-7224036065089568769-WYI9?utm_source=share&utm_medium=member_desktop&rcm=ACoAAA8QhccB0R82FWW4D7H_Xjk0eGCD2T6BvcM",
       img: "/assets/treehouse-with-ndu.jpg",              // grid thumbnail
       modalImg: "/assets/treehouse-with-ndu-large.jpg",   // higher-res for zoom
       zoom: true,
@@ -364,9 +410,23 @@ I could guess a letter only once. After I guessed a letter, my programming disab
   ],
 
   // --- Contact ---
-  contact: {
+  // Upwork build: no means of direct contact (Upwork ToS §7.2). Name and icon only.
+  contact: import.meta.env.VITE_UPWORK ? {
     name: "Ndumiso Yedwa",
-    location: "Johannesburg, South Africa",
+    location: "",
+    icon: "/assets/ndu-icon.png",
+  } : {
+    name: "Ndumiso Yedwa",
+    email: "contact@embarkdigitals.com",
+    phone: "+27 60 714 7939",
+    whatsapp: "https://wa.me/message/MDL4XKDNZVLHE1",
+    linkedin: "https://www.linkedin.com/company/embark-digitals/",
+    facebook: "https://facebook.com/embarkdigitals",
+    instagram: "https://instagram.com/embarkdigitals?utm_source=qr&igshid=ZTM4ZDRiNzUwMw==",
+    twitter: "https://x.com/EmbarkDigitals?t=do3jV9xUNbQMcIrGY-xglQ&s=08",
+    location: "", // no location shown for now (owner, 17 Nov 2026)
     icon: "/assets/ndu-icon.png",                 // navbar/footer logo
+    ecard: "https://ndumiso-y.github.io/card/", // e-card button + QR (was embarkdigitals.com/ecard, a 404; owner Gate 4, 24 Nov 2026)
+    vcf: "/assets/Embark-Digitals.vcf"            // VCF contact file
   },
 };

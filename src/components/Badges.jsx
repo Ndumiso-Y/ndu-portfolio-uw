@@ -1,7 +1,6 @@
 // src/components/Badges.jsx
 import React, { useState } from "react";
 import { content } from "../content";
-import { AssetImage } from "./ui/AssetImage";
 
 export default function Badges() {
   const items = Array.isArray(content?.badges) ? content.badges : [];
@@ -52,7 +51,7 @@ export default function Badges() {
                 onClick={onCardClick}
               >
                 <div className={`w-full ${aspectClass} bg-slate-50 overflow-hidden relative`}>
-                  <AssetImage
+                  <img
                     src={b.img}
                     alt={b.name || "Badge"}
                     className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
@@ -94,7 +93,7 @@ export default function Badges() {
                   <>
                     <div className="mt-3 border border-slate-200 rounded-xl overflow-auto bg-slate-50">
                       <div className="w-full grid place-items-center" style={{ minHeight: 320 }}>
-                        <AssetImage src={items[modal.idx].snippetImg} alt="Acceptance letter snippet"
+                        <img src={items[modal.idx].snippetImg} alt="Acceptance letter snippet"
                           onContextMenu={(e)=>e.preventDefault()}
                           style={{ transform:`scale(${modal.scale})`, transformOrigin:"center center", transition:"transform 120ms ease" }}
                           className="max-w-full max-h-[70vh] object-contain" />
@@ -114,7 +113,7 @@ export default function Badges() {
               <>
                 <div className="mt-3 border border-slate-200 rounded-xl overflow-auto bg-slate-50">
                   <div className="w-full grid place-items-center" style={{ minHeight: 360 }}>
-                    <AssetImage
+                    <img
                       src={items[modal.idx].modalImg || items[modal.idx].img}
                       alt={items[modal.idx].name}
                       onContextMenu={(e)=>e.preventDefault()}

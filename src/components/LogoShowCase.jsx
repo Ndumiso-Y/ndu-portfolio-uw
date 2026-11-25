@@ -3,7 +3,6 @@ import { withBase } from '../lib/withBase';
 import React, { useEffect, useState } from "react";
 import { content } from "../content";
 import { trackGraphicsSlidesClick } from '../lib/analytics';
-import { AssetImage } from './ui/AssetImage';
 
 function Chip({ children }) {
   return (
@@ -135,7 +134,7 @@ export default function LogoShowCase() {
                     onMouseLeave={(e) => e.currentTarget.style.borderColor = 'transparent'}
                   >
                     <div className="relative overflow-hidden aspect-[16/10] bg-slate-50">
-                      <AssetImage src={cover} alt={it.name||"Logo"} className="w-full h-full object-contain grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" loading="lazy" />
+                      <img src={cover} alt={it.name||"Logo"} className="w-full h-full object-contain grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" loading="lazy" />
                       {/* Brand color overlay on hover */}
                       <div
                         className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500"
@@ -203,7 +202,7 @@ export default function LogoShowCase() {
                     className="w-12 h-12 overflow-hidden border-2 hover:scale-105 transition-all"
                     style={{ borderColor: brand }}
                   >
-                    <AssetImage src={l.cover||l.thumb} alt="" className="w-full h-full object-cover grayscale"/>
+                    <img src={l.cover||l.thumb} alt="" className="w-full h-full object-cover grayscale"/>
                   </button>
                 ))}
                 <button
@@ -255,7 +254,7 @@ export default function LogoShowCase() {
                     onClick={() => (isOpening ? openGallery(0, 0) : openZoom(realIndex))}
                   >
                     <div className="relative overflow-hidden aspect-[16/10] bg-slate-50">
-                      <AssetImage src={openingSrc} alt={d.title||"Design"} className="w-full h-full object-contain grayscale-[30%] group-hover:grayscale-0 transition-all duration-700" loading="lazy" />
+                      <img src={openingSrc} alt={d.title||"Design"} className="w-full h-full object-contain grayscale-[30%] group-hover:grayscale-0 transition-all duration-700" loading="lazy" />
                       {/* Brand color overlay on hover */}
                       <div
                         className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500"
@@ -313,7 +312,7 @@ export default function LogoShowCase() {
                     className="w-12 h-12 overflow-hidden border-2 hover:scale-105 transition-all"
                     style={{ borderColor: brand }}
                   >
-                    <AssetImage src={d.src || d.gallery?.[0]} alt="" className="w-full h-full object-cover grayscale"/>
+                    <img src={d.src || d.gallery?.[0]} alt="" className="w-full h-full object-cover grayscale"/>
                   </button>
                 ))}
                 <button
@@ -353,7 +352,7 @@ export default function LogoShowCase() {
               {modal.mode==="gallery" ? (
                 <>
                   <div className="relative border border-slate-200 rounded-lg bg-slate-50">
-                    <AssetImage src={tvei[modal.itemIdx].gallery[modal.imgIdx]} alt="Gallery item"
+                    <img src={tvei[modal.itemIdx].gallery[modal.imgIdx]} alt="Gallery item"
                          className="w-full max-h-[70vh] object-contain"
                          style={{ transform:`scale(${modal.scale})`, transition:"transform 120ms ease" }}/>
                     <button className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/90 border border-slate-200 px-2 py-1 text-sm" onClick={prevImg}>‹</button>
@@ -364,7 +363,7 @@ export default function LogoShowCase() {
                       <button key={idx}
                               className={`shrink-0 border rounded-md p-1 ${idx===modal.imgIdx?"border-slate-600":"border-slate-200"}`}
                               onClick={()=> setModal(m=>({ ...m, imgIdx: idx }))}>
-                        <AssetImage src={src} alt={`thumb ${idx+1}`} className="w-20 h-14 object-contain bg-white" />
+                        <img src={src} alt={`thumb ${idx+1}`} className="w-20 h-14 object-contain bg-white" />
                       </button>
                     ))}
                   </div>
@@ -377,7 +376,7 @@ export default function LogoShowCase() {
               ) : (
                 <>
                   <div className="relative border border-slate-200 rounded-lg bg-slate-50">
-                    <AssetImage src={tvei[modal.itemIdx]?.src || "/assets/nduproj-02.jpg"} alt={tvei[modal.itemIdx]?.title||"Design"}
+                    <img src={tvei[modal.itemIdx]?.src || "/assets/nduproj-02.jpg"} alt={tvei[modal.itemIdx]?.title||"Design"}
                          className="w-full max-h-[70vh] object-contain"
                          style={{ transform:`scale(${modal.scale})`, transition:"transform 120ms ease" }}/>
                   </div>

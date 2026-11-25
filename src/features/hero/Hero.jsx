@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { withBase } from "@/lib/withBase"
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false)
@@ -113,11 +112,18 @@ export default function Hero() {
                 Founder of Embark Digitals — building fast, modern websites, branding, and digital assets.
               </p>
 
-              {/* CTA */}
+              {/* CTAs */}
               <div className="flex flex-wrap gap-4 mb-10">
                 <button
+                  onClick={handleGetInTouch}
+                  className="inline-flex items-center gap-3 px-8 py-4 rounded-md bg-[#41b3bc] text-white font-semibold text-sm tracking-wide hover:bg-[#34919a] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#41b3bc] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+                  aria-label="Get in touch"
+                >
+                  Get in Touch
+                </button>
+                <button
                   onClick={handleViewWork}
-                  className="group inline-flex items-center gap-2 px-8 py-4 rounded-md bg-[#41b3bc] text-white font-semibold text-sm tracking-wide hover:bg-[#34919a] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#41b3bc] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+                  className="group inline-flex items-center gap-2 px-8 py-4 rounded-md border border-white/20 text-white font-medium text-sm tracking-wide hover:border-[#41b3bc] hover:text-[#41b3bc] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
                   aria-label="View work"
                 >
                   View Work
@@ -155,11 +161,9 @@ export default function Hero() {
               style={{ transitionDelay: '300ms' }}
             >
               <img
-                src={withBase("/assets/NdumisoNobackground.webp")}
+                src="/assets/NdumisoNobackground.png"
                 alt="Ndumiso Yedwa - Founder of Embark Digitals"
                 className="h-[60vh] md:h-[70vh] lg:h-[85vh] w-auto object-contain object-bottom"
-                width="832"
-                height="1248"
                 style={{
                   filter: 'drop-shadow(0 40px 80px rgba(0,0,0,0.7))'
                 }}
@@ -194,6 +198,45 @@ export default function Hero() {
             ))}
           </div>
 
+        </div>
+
+        {/* QR Connect Card - bottom right on desktop, below photo on mobile */}
+        <div
+          className={`absolute bottom-8 right-8 md:bottom-12 md:right-12 lg:bottom-16 lg:right-16 hidden lg:block z-30 transform transition-all duration-1000 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+          style={{ transitionDelay: '800ms' }}
+        >
+          <div className="bg-white/95 backdrop-blur-md border border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.4)] p-6">
+            <p className="text-center text-xs uppercase tracking-[0.25em] text-slate-500 font-medium mb-4">
+              SCAN ME
+            </p>
+            <div className="w-36 h-36 bg-white">
+              <img
+                src="/assets/QRcodeBusiness.jpg"
+                alt="QR Code - Connect with Ndumiso"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* QR card for mobile - below everything */}
+        <div className="lg:hidden flex justify-center mt-12">
+          <div className="bg-white/95 backdrop-blur-md border border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.4)] p-6">
+            <p className="text-center text-xs uppercase tracking-[0.25em] text-slate-500 font-medium mb-4">
+              SCAN ME
+            </p>
+            <div className="w-36 h-36 bg-white">
+              <img
+                src="/assets/QRcodeBusiness.jpg"
+                alt="QR Code - Connect with Ndumiso"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
         </div>
 
         {/* Scroll prompt */}

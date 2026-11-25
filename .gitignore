@@ -1,17 +1,9 @@
 node_modules/
 dist/
+dist-upwork/
 .env
 .DS_Store
 *.log
 dist.zip
 .claude/
 QA.md
-
-# Large media files
-*.psd
-*.ai
-*.mov
-# *.mp4  # Re-enabled to allow learning-journey-intro.mp4
-
-# Documentation
-*.pdf

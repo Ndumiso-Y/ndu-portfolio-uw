@@ -10,6 +10,7 @@ const links = [
   { href: "#social",   label: "Social Media Management" }, // must match section id
   { href: "#projects", label: "Projects" },
   { href: "#badges",   label: "Badges & Recognition" },
+  { href: "#contact",  label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -24,6 +25,13 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+{icon ? (
+  <img src={icon} alt="logo" className="w-8 h-8 rounded-lg object-contain" />
+) : (
+  <div className="w-8 h-8 rounded-lg border border-slate-200 grid place-items-center text-xs">NY</div>
+)}
+
 
   return (
     <nav className={`sticky top-0 z-40 transition-all duration-300 ${
